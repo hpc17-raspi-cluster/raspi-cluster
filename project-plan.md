@@ -27,7 +27,7 @@ Total: $256.28 + taxes
 * OS: openSUSE or Raspbian. openSUSE is the only 64 bit ARM OS available, but Raspbian is more common. My preference is openSUSE. In the off-chance that it doesn't work, we switch to Raspbian.
 * OpenMPI: Compile from source.
 * Benchmarks:  
-    -[OSU MPI Benchmarks](http://mvapich.cse.ohio-state.edu/benchmarks/) for micro-benchmarks  
+    - [OSU MPI Benchmarks](http://mvapich.cse.ohio-state.edu/benchmarks/) for micro-benchmarks  
     - Some actual code for macro-benchmarks
     - Distributed network training with pytorch. (The library is experimental, so I may need to contribute to it, or write it from stratch.)
     - Parallel/Distributed K-means. http://www.ece.northwestern.edu/~wkliao/Kmeans/index.html
