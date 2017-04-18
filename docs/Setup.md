@@ -18,6 +18,7 @@
   and add your conenction details to `.conf` file used by `wpa_supplicant` (usually `wpa_supplicant.conf`). See [Wifi setup at boot](./wifi-setup.md) for some hints.
 * Insert the SD card into one of the Pi's, power it up and ssh into it.
 * Setup your locale, timezone, and other settings as required.
+* *(Recommended)* Switch to `systemd-networkd` for network management. The rest of this document assumes that `systemd-networkd`, and hence `systemd`, is being used. You can use the script in `scripts/switch-to-systemd-networkd.sh` on Raspbian. This will configure both ethernet and wifi as DHCP initially. That will be changed later.
 * *(Optional)* Install git and clone this repository using `git clone`
 
 ### Installing Open MPI:
@@ -41,8 +42,8 @@ One or more of the Pis need to work as an access node for the cluster. Different
 
 #### Static IP setup for home clusters
 
-If your cluster is going to stay in your home network or a network where you have access to the router settings, the easiest way to do this is to setup static IPs for the Pis. Avoid doing this through the OS unless you are sure that there will be no IP conflicts.  
-Log into your router home page, and search for the section which allows you to create the static IPs. You will probably need the MAC address of the Pis, which should be available in the router itself, or can be obtained by running `ip link show`.
+If your cluster is going to stay in your home network or a network where you have access to the router settings, the easiest way to do this is to setup static IPs. Avoid doing this through `systemd-networkd` unless you are sure that there will be no IP conflicts.  
+Log into your router home page, and search for the section which allows you to create the static IPs. You will need the MAC address of the Pis, which should be available in the router itself, or can be obtained by running `ip link show`.
 
 You may skip to "Setting up a shared file system" now
 
@@ -56,7 +57,12 @@ These setups are more flexible but require some more configuration and installat
 
 ##### Using Wifi
 
-This is probably the easiest setup since the hardware is already ready and only the software needs to be installed. You will need to have the hostnames and the MAC addresses of your Pis ethernet ports available.
+This is probably the easiest setup since the hardware is already ready and only the software needs to be installed.
 
-* Set your ethernet to static IP address. How to do this usually varies by OS and you will have to refer to your OS's help manual for this.
-* 
+On the access node:
+
+* Install dnsmasq through the package manager
+* Copy the `etc/dnsmasq.conf` and `etc/resolv.dnsmasq.conf` script from this repo to `/etc/dnsmasq.conf`. This will start `dnsmasq` on the `eth0` interface. Rename the interface in the `dnsmasq.conf` script if needed. Also, it will use Google's public DNS servers for upstream DNS resolution. Change those in `resolv.dnsmasq.conf` if required.
+* On Raspbian, there are issues running dnsmasq along with resolvconf, so disable resolvconf settings for dnsmasq by uncommenting the line `IGNORE_RESOLVCONF=yes` in the `/etc/default/dnsmasq` file.
+
+All these steps can be run on Raspbian through the `scripts/setup-dnsmasq.sh` script in this repo. This node will now work as the access node for your cluster and provide DNS and DHCP server services to the rest of the cluster.
