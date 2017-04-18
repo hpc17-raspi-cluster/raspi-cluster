@@ -1,0 +1,5 @@
+[Match]
+Name=wlan* wlp*
+
+[Network]
+DHCP=yes
