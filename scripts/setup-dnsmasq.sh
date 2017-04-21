@@ -11,7 +11,8 @@ systemctl stop dnsmasq                                 &&
 install -v -m 644 etc/systemd/system/dnsmasq.service \
                   /etc/systemd/system/dnsmasq.service  &&
 install -v -m 644 etc/resolv.dnsmasq.conf /etc/        &&
-install -v -m 644 etc/dnsmasq.conf /etc/
+install -v -m 644 etc/dnsmasq.conf /etc/               &&
+touch /etc/dnsmasq_hosts
 echo "dnsmasq setup successfully"
 echo "Configured to use public DNS servers from Google for upstream"
 echo "DNS resolution. If you wish to use different DNS servers, please"
