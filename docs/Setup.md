@@ -18,7 +18,7 @@
   and add your conenction details to `.conf` file used by `wpa_supplicant` (usually `wpa_supplicant.conf`). See [Wifi setup at boot](./wifi-setup.md) for some hints.
 * Insert the SD card into one of the Pi's, power it up and ssh into it.
 * Setup your locale, timezone, and other settings as required.
-* *(Recommended)* Switch to `systemd-networkd` for network management. The rest of this document assumes that `systemd-networkd`, and hence `systemd`, is being used. You can use the script in `scripts/switch-to-systemd-networkd.sh` on Raspbian. This will configure both ethernet and wifi as DHCP initially. That will be changed later.
+* *(Recommended)* Switch to `systemd-networkd` for network management. The rest of this document assumes that `systemd-networkd` is being used. You can use the script in `scripts/switch-to-systemd-networkd.sh` on Raspbian Jessie or read the `docs/systemd-networkd-setup.md` file for details. This will configure both ethernet (`eth0`) and wifi (`wlan0`) as DHCP initially. That will be changed later for one of the Pis. If you choose not to use `systemd-networkd`, the network configuration and boot time service startup in the scripts will not work. You will have to manually do that using your init systems commands.
 * *(Optional)* Install git and clone this repository using `git clone`
 
 ### Installing Open MPI:
@@ -43,7 +43,8 @@ One or more of the Pis need to work as an access node for the cluster. Different
 #### Static IP setup for home clusters
 
 If your cluster is going to stay in your home network or a network where you have access to the router settings, the easiest way to do this is to setup static IPs. Avoid doing this through `systemd-networkd` unless you are sure that there will be no IP conflicts.  
-Log into your router home page, and search for the section which allows you to create the static IPs. You will need the MAC address of the Pis, which should be available in the router itself, or can be obtained by running `ip link show`.
+Log into your router home page, and search for the section which allows you to create the static IPs. You will need the MAC address of the Pis, which should be available in the router itself, or can be obtained by running `ip link show`. Note the IP address and hostname used for each Pi.  
+Now log into each Pi and add all the IP address and hostnames to the `/etc/hosts` file.
 
 You may skip to "Setting up a shared file system" now
 
@@ -55,14 +56,32 @@ These setups are more flexible but require some more configuration and installat
 2. Add a second ethernet port and use that for SSH access
 3. Virtualize the ethernet port
 
+For all three setups, `dnsmasq` needs to be installed on the access node:
+
+* Install dnsmasq through the package manager. Since most package managers will automatically enable and start freshly installed services, disable it and stop it while it is setup.
+* Copy the `etc/dnsmasq.conf` and `etc/resolv.dnsmasq.conf` script from this repo to `/etc` directory on the Pi. The configuration provided runs `dnsmasq` as a DHCP and DNS server on the `eth0` interface. Rename the interfaces in the `dnsmasq.conf` script if needed.  
+Also, it will use Google's public DNS servers for upstream DNS resolution. Change those in `resolv.dnsmasq.conf` if required.
+* Copy the systemd unit files `etc/systemd/system/{dnsmasq.conf,fix-ethernet-issue}.service` to `/etc/systemd/system/` and the `scripts/fix-ethernet-issue.sh` script to `/usr/local/bin/`.
+* Replace the systemd network file `/etc/systemd/network/10-ethernet.network` with the `etc/systemd/network/20-ethernet-dnsmasq.network` from this repo, or if you wish to keep the old file, just change `DHCP=no` within the file.
+
+All these steps can be run on Raspbian through the `scripts/setup-dnsmasq.sh` script in this repo. This node will now provide DNS and DHCP server services to the rest of the cluster.
+
 ##### Using Wifi
 
-This is probably the easiest setup since the hardware is already ready and only the software needs to be installed.
+Nothing more needs to be done here. The above steps have already setup the DHCP and DNS server for wifi.
 
-On the access node:
+##### Using USB to ethernet dongle
 
-* Install dnsmasq through the package manager
-* Copy the `etc/dnsmasq.conf` and `etc/resolv.dnsmasq.conf` script from this repo to `/etc/dnsmasq.conf`. This will start `dnsmasq` on the `eth0` interface. Rename the interface in the `dnsmasq.conf` script if needed. Also, it will use Google's public DNS servers for upstream DNS resolution. Change those in `resolv.dnsmasq.conf` if required.
-* On Raspbian, there are issues running dnsmasq along with resolvconf, so disable resolvconf settings for dnsmasq by uncommenting the line `IGNORE_RESOLVCONF=yes` in the `/etc/default/dnsmasq` file.
+Here, you need to create an additional systemd network file for the new ethernet interface, `eth1`.
 
-All these steps can be run on Raspbian through the `scripts/setup-dnsmasq.sh` script in this repo. This node will now work as the access node for your cluster and provide DNS and DHCP server services to the rest of the cluster.
+* Copy the `etc/systemd/network/11-ethernet-eth1.network` file to `/etc/systemd/network/`
+
+The script `scripts/eth1-setup.sh` will run the above step for you.
+
+##### Using virtualized ethernet setup
+
+//TODO
+
+<hr />
+
+It is highly recommended that you reboot the Pi now and have a serial cable or some alternate means of interacting with it handy since networking may not work if something goes wrong.
