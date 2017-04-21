@@ -1,0 +1,10 @@
+[Unit]
+Description=Fix issue when setting static IP address with systemd-networkd
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/fix-ethernet-issue.sh
+
+[Install]
+WantedBy=multi-user.target
