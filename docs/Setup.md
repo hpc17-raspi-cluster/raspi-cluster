@@ -68,7 +68,7 @@ All these steps can be run on Raspbian through the `scripts/setup-dnsmasq.sh` sc
 
 ##### Using Wifi
 
-Nothing more needs to be done here. The above steps have already setup the DHCP and DNS server for wifi.
+Nothing more needs to be done here. The above steps have already setup the DHCP and DNS server for wifi. At this point, you can ssh directly into the access node, or into any of the other nodes. However, internet connection won't work on any node other than access node.
 
 ##### Using USB to ethernet dongle
 
@@ -76,7 +76,7 @@ Here, you need to create an additional systemd network file for the new ethernet
 
 * Copy the `etc/systemd/network/11-ethernet-eth1.network` file to `/etc/systemd/network/`
 
-The script `scripts/eth1-setup.sh` will run the above step for you.
+The script `scripts/eth1-setup.sh` will run the above step for you. At this point, you can ssh into the access node and then ssh into any of the Pis from there. Internet connection won't work any node other than access node.
 
 ##### Using virtualized ethernet setup
 
@@ -85,3 +85,16 @@ The script `scripts/eth1-setup.sh` will run the above step for you.
 <hr />
 
 It is highly recommended that you reboot the Pi now and have a serial cable or some alternate means of interacting with it handy since networking may not work if something goes wrong.
+
+### Setting up internet access
+
+The networking setup so far only allows the Pis to talk to each other. To setup internet access, packet forwarding needs to be setup on the access node.
+
+* First, make sure `iptables` is installed.
+* After that, create a directory called `/etc/systemd/scripts` on the access node.
+* If you are using `eth1` instead of `wlan0` to access the Pi, run `sed -i s/wlan0/eth1/' etc/systemd/scripts/iptables`. Now, copy the `etc/systemd/scripts/iptables` file from this repo to the newly created directory. Make sure that the script can be executed by root.
+* Copy the `etc/systemd/system/iptables.service` file to `/etc/systemd/system/` directory on the Pi to enable the rules at boot time using systemd.
+* Enable the iptables service using `sudo systemctl enable iptables` and reboot the Pi.
+
+The steps above can be run automatically using the `scripts/iptables-setup.sh` script in this repo.
+After this, you should be able to access internet from any of the Pis in the cluster.
