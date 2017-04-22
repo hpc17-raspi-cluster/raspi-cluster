@@ -1,0 +1,20 @@
+#!/bin/sh
+
+INTERNET=wlan0
+SUBNET=eth0
+SUBNETWORK='192.168.1.0/24'
+
+modprobe iptable_nat
+modprobe nf_conntrack
+modprobe xt_conntrack
+modprobe xt_state
+
+# Setup forwarding
+iptables -t nat -A POSTROUTING -o $INTERNET -j MASQUERADE
+iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i $SUBNET -o $INTERNET -j ACCEPT
+
+# Accept DHCP and DNS requests
+iptables -I INPUT -p udp --dport 67 -i $SUBNET -j ACCEPT
+iptables -I INPUT -p udp --dport 53 -s $SUBNETWORK -j ACCEPT
+iptables -I INPUT -p tcp --dport 53 -s $SUBNETWORK -j ACCEPT
