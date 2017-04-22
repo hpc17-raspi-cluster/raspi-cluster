@@ -18,7 +18,7 @@
   and add your conenction details to `.conf` file used by `wpa_supplicant` (usually `wpa_supplicant.conf`). See [Wifi setup at boot](./wifi-setup.md) for some hints.
 * Insert the SD card into one of the Pi's, power it up and ssh into it.
 * Setup your locale, timezone, and other settings as required.
-* *(Recommended)* Switch to `systemd-networkd` for network management. The rest of this document assumes that `systemd-networkd` is being used. You can use the script in `scripts/switch-to-systemd-networkd.sh` on Raspbian Jessie or read the `docs/systemd-networkd-setup.md` file for details. This will configure both ethernet (`eth0`) and wifi (`wlan0`) as DHCP initially. That will be changed later for one of the Pis. If you choose not to use `systemd-networkd`, the network configuration and boot time service startup in the scripts will not work. You will have to manually do that using your init systems commands.
+* *(Recommended)* Switch to `systemd-networkd` for network management. The rest of this document assumes that `systemd-networkd` is being used. You can use the script in `scripts/switch-to-systemd-networkd.sh` on Raspbian Jessie or [execute the steps](./systemd-networkd-setup.md) manually. This will configure both ethernet (`eth0`) and wifi (`wlan0`) as DHCP initially. That will be changed later for the access node. If you choose not to use `systemd-networkd`, the network configuration and boot time service startup in the scripts will not work. You will have to manually do that using your init systems commands.
 * *(Optional)* Install git and clone this repository using `git clone`
 
 ### Installing Open MPI:
@@ -34,11 +34,11 @@
 * Clone the `.img` file onto the other SD cards.
 * Insert the cards into the Pis and boot all the Pis up.
 * Log into each Pi and give them unique hostnames using `sudo hostname <HOSTNAME>`.
-* *(Optional)* Save image for future use.
+* *(Optional)* Save image for future use to easily add more Pis to the cluster.
 
-### Setting up networking on access node
+### Setting up network for the cluster
 
-One or more of the Pis need to work as an access node for the cluster. Different scenarios of how this can be done are listed below.
+For the cluster to be useful, there needs to be a network for the Pis to talk to each other and for OpenMPI communicators. Different scenarios of how this can be done are listed below.
 
 #### Static IP setup for home clusters
 
@@ -50,7 +50,7 @@ You may skip to "Setting up a shared file system" now
 
 #### Ethernet switch setups
 
-These setups are more flexible but require some more configuration and installation than the static IP setup. They require an ethernet switch for the cluster. The possible setups are:
+These setups are more flexible but require some more configuration and installation than the static IP setup. They require an ethernet switch for the cluster to communicate and also require an access node that will provide DNS resolution and DHCP service to the rest of the Pis. The possible setups are:
 
 1. Use Wifi for SSH access and Ethernet for cluster communication
 2. Add a second ethernet port and use that for SSH access

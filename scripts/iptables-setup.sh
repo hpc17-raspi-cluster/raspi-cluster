@@ -6,9 +6,11 @@ if [[ $EUID > 0 ]] ; then
 fi
 
 apt-get -y install iptables
+install -v -m 644 etc/sysctl.d/30-ipforwarding.conf \
+                 /etc/sysctl.d/            &&
 install -v -dm 755 /etc/systemd/scripts    &&
 install -v -m 644 etc/systemd/system/iptables.service \
-                 /etc/systemd/system       &&
+                 /etc/systemd/system/      &&
 install -v -m 744 etc/systemd/scripts/iptables \
-                 /etc/systemd/scripts      &&
+                 /etc/systemd/scripts/     &&
 systemctl enable iptables
