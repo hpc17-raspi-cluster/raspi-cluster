@@ -50,7 +50,7 @@ You may skip to "Setting up a shared file system" now
 
 #### Ethernet switch setups
 
-These setups are more flexible but require some more configuration and installation than the static IP setup. They require an ethernet switch for the cluster to communicate and also require an access node that will provide DNS resolution and DHCP service to the rest of the Pis. The possible setups are:
+These setups are more flexible but require some more configuration and installation than the static IP setup. They require an ethernet switch for the cluster to communicate and also require an access node that will act as DNS and DHCP server to the rest of the Pis. The possible ways to do this are:
 
 1. Use Wifi for SSH access and Ethernet for cluster communication
 2. Add a second ethernet port and use that for SSH access
@@ -60,7 +60,7 @@ For all three setups, `dnsmasq` needs to be installed on the access node:
 
 * Install dnsmasq through the package manager. Since most package managers will automatically enable and start freshly installed services, disable it and stop it while it is setup.
 * Copy the `etc/dnsmasq.conf` and `etc/resolv.dnsmasq.conf` script from this repo to `/etc` directory on the Pi. The configuration provided runs `dnsmasq` as a DHCP and DNS server on the `eth0` interface. Rename the interfaces in the `dnsmasq.conf` script if needed.  
-Also, it will use Google's public DNS servers for upstream DNS resolution. Change those in `resolv.dnsmasq.conf` if required.
+Also, it will use Google's public DNS servers for upstream DNS resolution. Change those in `resolv.dnsmasq.conf` if you wish.
 * Copy the systemd unit files `etc/systemd/system/{dnsmasq.conf,fix-ethernet-issue}.service` to `/etc/systemd/system/` and the `scripts/fix-ethernet-issue.sh` script to `/usr/local/bin/`.
 * Replace the systemd network file `/etc/systemd/network/10-ethernet.network` with the `etc/systemd/network/20-ethernet-dnsmasq.network` from this repo, or if you wish to keep the old file, just change `DHCP=no` within the file.
 
@@ -68,7 +68,7 @@ All these steps can be run on Raspbian through the `scripts/setup-dnsmasq.sh` sc
 
 ##### Using Wifi
 
-Nothing more needs to be done here. The above steps have already setup the DHCP and DNS server for wifi. At this point, you can ssh directly into the access node, or into any of the other nodes. However, internet connection won't work on any node other than access node.
+Nothing more needs to be done here. The above steps have already setup the DHCP and DNS server for wifi. At this point, you can ssh directly into any of the Pis from your wifi, if you know their IP addresses. However, internet connection won't work on any node other than access node.
 
 ##### Using USB to ethernet dongle
 
@@ -86,11 +86,14 @@ The script `scripts/eth1-setup.sh` will run the above step for you. At this poin
 
 It is highly recommended that you reboot the Pi now and have a serial cable or some alternate means of interacting with it handy since networking may not work if something goes wrong.
 
+You can now setup a static IP address for the access node using the MAC address of the interface that is connected to the outside world.
+
 ### Setting up internet access
 
 The networking setup so far only allows the Pis to talk to each other. To setup internet access, packet forwarding needs to be setup on the access node.
 
 * First, make sure `iptables` is installed.
+* Enable IP forwarding by copying the file `etc/sysctl.d/30-ipforwarding.conf` in this repo to `/etc/sysctl.d/`. Execute `sysctl $(/etc/sysctl.d/30-ipforwarding.conf)` to start IP forwarding and check that it works using `sysctl -a | grep forward`.
 * After that, create a directory called `/etc/systemd/scripts` on the access node.
 * If you are using `eth1` instead of `wlan0` to access the Pi, run `sed -i s/wlan0/eth1/' etc/systemd/scripts/iptables`. Now, copy the `etc/systemd/scripts/iptables` file from this repo to the newly created directory. Make sure that the script can be executed by root.
 * Copy the `etc/systemd/system/iptables.service` file to `/etc/systemd/system/` directory on the Pi to enable the rules at boot time using systemd.
