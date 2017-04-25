@@ -161,7 +161,7 @@ Now log into to one of the other Pis and test that this directory can be mounted
 
 * Run `mkdir -pv /mnt/usb && mount -v 192.168.1.1:/home /mnt/usb`.
 * If the mount works, make it permanent by adding the below line to `/etc/fstab`:
-`192.168.1.1:/home /home nfs noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min 0 0`
+`192.168.1.1:/home /home nfs auto,nofail,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min 0 0`
 * Reboot the Pi to and run `df -h` to make sure the settings are working fine. You should see a line `192.168.1.1:/home` in the output.
 
 Now, add the line to `/etc/fstab` on all other Pis except the access node. This can be automated by running the `scripts/nfs-mount-home.sh` script from this repo on the Pis.
