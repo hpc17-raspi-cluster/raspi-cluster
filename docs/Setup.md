@@ -148,29 +148,31 @@ These steps can be run automatically using `scripts/move-home.sh`.
 
 ###### Sharing the new home:
 
-* Install `nfs-server` on the access node.
+* Install `nfs-kernel-server` on the access node.
+* Install two systemd unit files to fix a bug in Raspbian/Debian Jessie that prevents `rpcbind` and consequently `nfs-kernel-server` from starting on boot. These files are `etc/systemd/system/rpcbind.service` and `etc/systemd/system/nfs-common.service`. They have to be installed in `/etc/systemd/system/` directory on the access node.
 * Add the below line to `/etc/exports` replacing `/home` with whatever directory you want to share:
 `/home 192.168.1.0/255.255.255.0(rw,sync)`
 * Enable the boot time startup of NFS server with `systemctl enable rpcbind nfs-common` and reboot.
+* After rebooting, run `showmount -e` to make sure that the file system is exported.
 
 These steps (except the reboot) can be run from `scripts/share-home.sh`
 
 Now log into to one of the other Pis and test that this directory can be mounted correctly.
 
-* First, make sure that `BROWSE` option is set to yes in `/etc/default/nfs-common` otherwise you won't be able to see the files.
 * Run `mkdir -pv /mnt/usb && mount -v 192.168.1.1:/home /mnt/usb`.
 * If the mount works, make it permanent by adding the below line to `/etc/fstab`:
 `192.168.1.1:/home /home nfs noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min 0 0`
 * Reboot the Pi to and run `df -h` to make sure the settings are working fine. You should see a line `192.168.1.1:/home` in the output.
 
-Now, add the line to `/etc/fstab` on all other Pis except the access node.
+Now, add the line to `/etc/fstab` on all other Pis except the access node. This can be automated by running the `scripts/nfs-mount-home.sh` script from this repo on the Pis.
 
 ### Creating a SSH key pair
 
 To allow password-less access from one node to other, a SSH key pair is required. This is needed for OpenMPI programs to run across multiple nodes.
 
 * Generate a SSH key pair by running `ssh-keygen -t rsa -b 2048 -C "<your-email-address"` on the access node. Do NOT enter a passphrase otherwise OpenMPI will not be able to use the keys.
-* If your `/home` directory is already NFS mounted, nothing else needs to be done. Otherwise, you will have to copy the `~/.ssh/id_rsa` and `~/.ssh/id_rsa.pub` files to all other Pis on the network.
+* If your `/home` directory is NFS mounted, run `cat .ssh/id_rsa.pub >> .ssh/authorized_keys`.
+* Otherwise, for each Pi, run `ssh <Pi-hostname-or-IP> mkdir -p .ssh` and then `cat .ssh/id_rsa.pub | ssh <Pi-hostname-or-IP> 'cat >> .ssh/authorized_keys'`
 
 That's it for all the setup part! You can now use the cluster to run OpenMPI programs in this repository for testing. The cluster setup is generic enough to easily allow use of any other distributed memory framework as well.  
 Adding new nodes to the cluster can also be done easily by copying the disk image from one of the non-access nodes to a new Pi and plugging it into the network switch. Just make sure that the hostname for the Pi does not conflict with existing hostnames.
