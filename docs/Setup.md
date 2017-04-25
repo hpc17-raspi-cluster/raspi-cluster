@@ -1,5 +1,16 @@
 ## Raspberry Pi cluster setup
 
+### Index
+
+1. [Required Hardware](#required-hardware)
+2. [Installing the OS](#install-os)
+3. [Cloning the SD card](#clone-sd-card)
+4. [Setting up network](#networking)
+5. [Internet access](#internet)
+6. [Setting up a shared file system](#shared-fs)
+7. [Creating a SSH key pair](#ssh-key)
+
+<a name="required-hardware"></a>
 ### Required Hardware
 
 * *n* x Raspberry Pis
@@ -10,6 +21,9 @@
 * *(Optional*) 1 or more ethernet switches with enough ports for the cluster
 * *(Optional)* USB to ethernet connector
 
+<hr />
+
+<a name="install-os"></a>
 ### Installing the OS:
 
 * Download an image of the distribution you intend to run on the cluster.
@@ -22,6 +36,9 @@
 * *(Recommended)* Switch to `systemd-networkd` for network management. The rest of this document assumes that `systemd-networkd` is being used. You can use the script in `scripts/switch-to-systemd-networkd.sh` on Raspbian Jessie or [execute the steps](./systemd-networkd-setup.md) manually. This will configure both ethernet (`eth0`) and wifi (`wlan0`) as DHCP initially. That will be changed later for the access node. If you choose not to use `systemd-networkd`, the network configuration and boot time service startup in the scripts will not work. You will have to manually do that using your init systems commands.
 * *(Optional)* Install git and clone this repository using `git clone`
 
+<hr />
+
+<a name="install-ompi"></a>
 ### Installing Open MPI:
 
 * Download the latest stable source code for Open MPI from https://www.open-mpi.org/software/ompi/ or clone their Github repo with `git clone https://github.com/open-mpi/ompi`
@@ -30,6 +47,7 @@
 
 <hr />
 
+<a name="clone-sd-card"></a>
 ### Cloning the SD card
 
 * Remove the SD card from the Pi and insert it back into your computer.
@@ -41,10 +59,12 @@
 
 <hr />
 
+<a name="networking"></a>
 ### Setting up network for the cluster
 
 For the cluster to be useful, there needs to be a network for the Pis to talk to each other and for OpenMPI communicators. Different scenarios of how this can be done are listed below.
 
+<a name="static-ip"></a>
 #### Static IP setup for home clusters
 
 If your cluster is going to stay in your home network or a network where you have access to the router settings, the easiest way to do this is to setup static IPs. Avoid doing this through `systemd-networkd` unless you are sure that there will be no IP conflicts.
@@ -54,6 +74,7 @@ If your cluster is going to stay in your home network or a network where you hav
 
 You may skip to "Setting up a shared file system" now
 
+<a name="dhcp"></a>
 #### Ethernet switch setups
 
 These setups are more flexible but require some more configuration and installation than the static IP setup. They require an ethernet switch for the cluster to communicate and also require an access node that will act as DNS and DHCP server to the rest of the Pis. The possible ways to do this are:
@@ -72,10 +93,12 @@ Also, it will use Google's public DNS servers for upstream DNS resolution. Chang
 
 All these steps can be run on Raspbian through the `scripts/setup-dnsmasq.sh` script in this repo. This node will now provide DNS and DHCP server services to the rest of the cluster.
 
+<a name="wifi"></a>
 ##### Using Wifi
 
 Nothing more needs to be done here. The above steps have already setup the DHCP and DNS server for wifi. At this point, you can ssh directly into any of the Pis from your wifi, if you know their IP addresses. However, internet connection won't work on any node other than access node.
 
+<a name="dongle"></a>
 ##### Using USB to ethernet dongle
 
 Here, you need to create an additional systemd network file for the new ethernet interface, `eth1`.
@@ -84,7 +107,8 @@ Here, you need to create an additional systemd network file for the new ethernet
 
 The script `scripts/eth1-setup.sh` will run the above step for you. At this point, you can ssh into the access node and then ssh into any of the Pis from there. Internet connection won't work any node other than access node.
 
-##### Using virtualized ethernet setup
+<a name="ip-aliased"></a>
+##### Using IP aliased interface
 
 //TODO
 
@@ -94,6 +118,7 @@ The script `scripts/eth1-setup.sh` will run the above step for you. At this poin
 
 You can now setup a static IP address for the access node using the MAC address of the interface that is connected to the outside world.
 
+<a name="internet"></a>
 ### Setting up internet access
 
 The networking setup so far only allows the Pis to talk to each other. To setup internet access, packet forwarding needs to be setup on the access node.
@@ -108,6 +133,9 @@ The networking setup so far only allows the Pis to talk to each other. To setup 
 The steps above can be run automatically using the `scripts/iptables-setup.sh` script in this repo.
 After this, you should be able to access internet from any of the Pis in the cluster.
 
+<hr />
+
+<a name="shared-fs"></a>
 ### Setting up a shared file system
 
 For OpenMPI to work, there needs to a file system that is accessible from all nodes with the same path. In this step, we create a Network File System (NFS) by starting a NFS server on the access node and mounting on all other nodes.
@@ -161,11 +189,14 @@ Now log into to one of the other Pis and test that this directory can be mounted
 
 * Run `mkdir -pv /mnt/usb && mount -v 192.168.1.1:/home /mnt/usb`.
 * If the mount works, make it permanent by adding the below line to `/etc/fstab`:
-`192.168.1.1:/home /home nfs auto,nofail,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min 0 0`
+`192.168.1.1:/home /home nfs auto,nofail,x-systemd.automount,x-systemd.device-timeout=10,timeo=110 0 0`
 * Reboot the Pi to and run `df -h` to make sure the settings are working fine. You should see a line `192.168.1.1:/home` in the output.
 
 Now, add the line to `/etc/fstab` on all other Pis except the access node. This can be automated by running the `scripts/nfs-mount-home.sh` script from this repo on the Pis.
 
+<hr />
+
+<a name="ssh-key"></a>
 ### Creating a SSH key pair
 
 To allow password-less access from one node to other, a SSH key pair is required. This is needed for OpenMPI programs to run across multiple nodes.
@@ -173,6 +204,10 @@ To allow password-less access from one node to other, a SSH key pair is required
 * Generate a SSH key pair by running `ssh-keygen -t rsa -b 2048 -C "<your-email-address"` on the access node. Do NOT enter a passphrase otherwise OpenMPI will not be able to use the keys.
 * If your `/home` directory is NFS mounted, run `cat .ssh/id_rsa.pub >> .ssh/authorized_keys`.
 * Otherwise, for each Pi, run `ssh <Pi-hostname-or-IP> mkdir -p .ssh` and then `cat .ssh/id_rsa.pub | ssh <Pi-hostname-or-IP> 'cat >> .ssh/authorized_keys'`
+
+Each user that logs in to the cluster will have to do the same.
+
+<hr />
 
 That's it for all the setup part! You can now use the cluster to run OpenMPI programs in this repository for testing. The cluster setup is generic enough to easily allow use of any other distributed memory framework as well.  
 Adding new nodes to the cluster can also be done easily by copying the disk image from one of the non-access nodes to a new Pi and plugging it into the network switch. Just make sure that the hostname for the Pi does not conflict with existing hostnames.
