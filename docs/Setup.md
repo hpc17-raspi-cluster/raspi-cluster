@@ -43,7 +43,7 @@
 
 * Download the latest stable source code for Open MPI from https://www.open-mpi.org/software/ompi/ or clone their Github repo with `git clone https://github.com/open-mpi/ompi`
 * To install Open MPI 2.1.0 with default settings, execute `scripts/install-openmpi.sh` on the Pi. It is a wrapper script that will ask about some installation options and might be helpful for those unfamiliar to installing from source on Linux. If you are comfortable installing from source code, you may do so directly using the standard `./configure && make && make install` method. Note that depending on your choice of distribution, you may need to install additional packages to get some extra features of Open MPI working. Some features that are not enabled by default on Open MPI are Valgrind support, C++ support, Fortran support and experimental Java support.
-* If you wish, you can also install the Python Open MPI library, `py4mpi`, to enable Open MPI support in Python.
+* If you wish, you can also install the Python Open MPI library, `mpi4py`, to enable Open MPI support in Python.
 
 <hr />
 
