@@ -28,7 +28,7 @@ echo "Build directory is $PWD"
 trap : 0
 set +e
 
-OMPI_CONFIG="../configure"
+OMPI_CONFIG="CFLAGS=-march=armv7-a CCASFLAGS=-march=armv7-a ../configure"
 
 echo -n "Select prefix under which to install (/usr/local/): "
 read OMPI_PREFIX
