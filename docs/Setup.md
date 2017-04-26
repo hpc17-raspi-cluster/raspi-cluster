@@ -41,9 +41,14 @@
 <a name="install-ompi"></a>
 ### Installing Open MPI:
 
-* Download the latest stable source code for Open MPI from https://www.open-mpi.org/software/ompi/ or clone their Github repo with `git clone https://github.com/open-mpi/ompi`
-* To install Open MPI 2.1.0 with default settings, execute `scripts/install-openmpi.sh` on the Pi. It is a wrapper script that will ask about some installation options and might be helpful for those unfamiliar to installing from source on Linux. If you are comfortable installing from source code, you may do so directly using the standard `./configure && make && make install` method. Note that depending on your choice of distribution, you may need to install additional packages to get some extra features of Open MPI working. Some features that are not enabled by default on Open MPI are Valgrind support, C++ support, Fortran support and experimental Java support.
+* The easy way is to install OpenMPI from your package manager. On Raspbian Jessie, this is done with `sudo apt-get install openmpi-common openmpi-bin`.
+* The hard way is to install it from source. But this way you get the latest stable version. Download the latest stable source code for Open MPI from https://www.open-mpi.org/software/ompi/ or clone their Github repo with `git clone https://github.com/open-mpi/ompi`
+* To install Open MPI 2.1.0 with default settings, execute `scripts/install-open-mpi.sh` on the Pi. It is a wrapper script that will ask about some installation options and might be helpful for those unfamiliar to installing from source on Linux. It is based on Raspbian, so other distribution users may need to replace `apt-get install` with their package manager's install command. You can probably us an alias as long as package names are same.
+* If you are comfortable installing from source code, you may do so directly using the standard `./configure && make && make install` method. Note that depending on your choice of distribution, you may need to install additional packages to get some extra features of Open MPI working. Some features that are not enabled by default on Open MPI are Valgrind support, C++ support, Fortran support and experimental Java support.
+* Once the configuration begins, go get a coffee or a beer. If you are not using the script to install, run `make -j 3` to speed things up a bit.
 * If you wish, you can also install the Python Open MPI library, `mpi4py`, to enable Open MPI support in Python.
+
+> NOTE: On Raspbian Jessie, `CFLAGS and CCASFLAGS=-march=armv7-a` has to be passed to configure for successful compilation. So, command is `CCASFLAGS=-march=armv7-a CFLAGS=-march=armv7-a ./configure <options>`. If you get an error that says `Error: selected processor does not support ARM mode 'dmb'`, recompile with above flags added.
 
 <hr />
 
