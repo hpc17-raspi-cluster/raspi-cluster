@@ -15,6 +15,7 @@ OMPI_TAR=${OMPI_VER}.tar.bz2
 OMPI_ULR=https://www.open-mpi.org/software/ompi/v2.1/downloads/$OMPI_TAR
 OMPI_SHA=3e1e02d4c4b3e22a9cc33deddab546cb990d0ee3
 
+cd /tmp
 wget $OMPI_URL
 echo "$OMPI_SHA $OMPI_TAR" | sha1sum -c
 echo "Extracting tarball...this will take a few minutes"
