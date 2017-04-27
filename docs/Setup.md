@@ -93,7 +93,7 @@ For all three setups, `dnsmasq` needs to be installed on the access node:
 * Install dnsmasq through the package manager. Since most package managers will automatically enable and start freshly installed services, disable it and stop it while it is setup.
 * Copy the `etc/dnsmasq.conf` and `etc/resolv.dnsmasq.conf` script from this repo to `/etc` directory on the Pi. The configuration provided runs `dnsmasq` as a DHCP and DNS server on the `eth0` interface. Rename the interfaces in the `dnsmasq.conf` script if needed.
 Also, it will use Google's public DNS servers for upstream DNS resolution. Change those in `resolv.dnsmasq.conf` if you wish.
-* Copy the systemd unit files `etc/systemd/system/{dnsmasq.conf,fix-ethernet-issue}.service` to `/etc/systemd/system/` and the `scripts/fix-ethernet-issue.sh` script to `/usr/local/bin/`.
+* Copy the systemd unit files `etc/systemd/system/{dnsmasq.conf,fix-ethernet-issue}.service` to `/etc/systemd/system/` and the `scripts/fix-ethernet-issue.sh` script to `/etc/systemd/scripts/`.
 * Replace the systemd network file `/etc/systemd/network/10-ethernet.network` with the `etc/systemd/network/20-ethernet-dnsmasq.network` from this repo, or if you wish to keep the old file, just change `DHCP=no` within the file.
 
 All these steps can be run on Raspbian through the `scripts/setup-dnsmasq.sh` script in this repo. This node will now provide DNS and DHCP server services to the rest of the cluster.
