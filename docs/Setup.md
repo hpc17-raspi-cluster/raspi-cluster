@@ -56,7 +56,7 @@
 ### Cloning the SD card
 
 * Remove the SD card from the Pi and insert it back into your computer.
-* Copy the contents of the SD card to a file either manually or by executing the script in `scripts/copy-sd-card.sh`.
+* Copy the contents of the SD card to a file with `.img` extension.
 * Clone the `.img` file onto the other SD cards.
 * Insert the cards into the Pis and boot all the Pis up.
 * Log into each Pi and give them unique hostnames using `sudo hostname <HOSTNAME>`.
