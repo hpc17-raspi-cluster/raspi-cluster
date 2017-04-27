@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/fix-ethernet-issue.sh
+ExecStart=/etc/systemd/scripts/fix-ethernet-issue.sh
 
 [Install]
 WantedBy=multi-user.target
