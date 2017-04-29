@@ -9,6 +9,14 @@ modprobe nf_conntrack
 modprobe xt_conntrack
 modprobe xt_state
 
+# These lines are here in case rules are already in place and the
+# script is ever rerun on the fly. We want to remove all rules and
+# pre-existing user defined chains before we implement new rules.
+iptables -F
+iptables -X
+iptables -Z
+iptables -t nat -F
+
 # Setup forwarding
 iptables -t nat -A POSTROUTING -o $INTERNET -j MASQUERADE
 iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
