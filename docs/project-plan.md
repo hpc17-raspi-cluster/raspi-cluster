@@ -42,3 +42,15 @@ Total: $256.28 + taxes
 6. Compare the scaling with HPC and/or CIMS machines.
 7. Investigate on making the cluster relocatable and easily expandable
 
+### Benchmarks
+We decided to run the some of the homework-code we've written and an OpenMPI implementation of distributed k-means algorithm. The benchmarks are following:
+- __Parallel Sample Sort__
+    + Ready.
+- __2D Jacobi Smoother__
+    + Ready.
+- __1D MultiGrid Jacobi Smoother__
+    + Needs to be adapted.
+- __K-Means__
+    I am halfway finishing. I will be generating data with a python script and reading the file within the C implementation. 
+
+We will be finishing the benchmarks and running them in the next week in Stampede/hpc/raspi
