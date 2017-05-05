@@ -1,0 +1,4 @@
+# gitignore
+
+# SD Card images
+*.img

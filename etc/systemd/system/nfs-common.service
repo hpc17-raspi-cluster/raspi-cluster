@@ -1,0 +1,13 @@
+[Unit]
+Description=NFS Common daemons
+Wants=remote-fs-pre.target
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/etc/init.d/nfs-common start
+ExecStop=/etc/init.d/nfs-common stop
+
+[Install]
+WantedBy=sysinit.target multi-user.target

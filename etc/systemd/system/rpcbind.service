@@ -1,0 +1,15 @@
+[Unit]
+Description=RPC bind portmap service
+After=systemd-tmpfiles-setup.service
+Wants=remote-fs-pre.target
+Before=remote-fs-pre.target
+DefaultDependencies=no
+
+[Service]
+ExecStart=/sbin/rpcbind -f -w
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=sysinit.target multi-user.target
+Alias=portmap
