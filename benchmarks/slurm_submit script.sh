@@ -7,7 +7,7 @@ read -d '' text << EOF
 #----------------------------------------------------
 
 #SBATCH -J hpcclass           # Job name
-#SBATCH -o %j.$1.out       # Name of stdout output file (%j expands to jobId)
+#SBATCH -o %j$3.out       # Name of stdout output file (%j expands to jobId)
 #SBATCH -p normal        # Queue name
 #SBATCH -N $2                  # Total number of nodes requested (16 cores/node)
 #SBATCH -n $((${2}*16))                 # Total number of mpi tasks requested
