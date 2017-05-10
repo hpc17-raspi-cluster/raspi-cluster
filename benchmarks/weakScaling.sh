@@ -9,7 +9,7 @@ array=(4 8 16 32 64)
 echo "DEBUG: ssort"
 for i in "${array[@]}"
 do
-	N=$((10**6*$i))
+	N=$((10**7*$i))
 	echo "$RUNNER $i ssort/ssort $N ssort/"
 	$RUNNER $i ssort/ssort $N ssort/
 	rm ssort/output*.txt
@@ -19,7 +19,7 @@ done
 array2=(4 16 64 256)
 
 echo "DEBUG: jacobi-2D"
-for i in "${array[@]}"
+for i in "${array2[@]}"
 do
 	NSQRT=$(echo "sqrt($i)" | bc)
     N=$((10**3*$NSQRT))
