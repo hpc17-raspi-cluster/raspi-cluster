@@ -2,6 +2,7 @@
 
 #RUNNER="ibrun -o 0 -n"
 RUNNER="mpirun -np"
+#RUNNER="mpirun --hosts rsp1,rsp2,rsp3 -perhost 1 -np"
 
 array=(4 8 16 32 64)
 
@@ -14,10 +15,13 @@ do
 
 done
 
+array2=(4 16 64 256)
+
 echo "DEBUG: jacobi-2D"
 for i in "${array[@]}"
 do
-	N=$((10**3*$i))
+	NSQRT=$(echo "sqrt($i)" | bc)
+    N=$((10**3*$NSQRT))
 	$RUNNER $i jacobi-2D/jacobi-mpi2D-nonBlocking $N 100
 
 done

@@ -2,7 +2,7 @@
 
 #RUNNER="ibrun -o 0 -n"
 RUNNER="mpirun -np"
-
+#RUNNER="mpirun --hosts rsp1,rsp2,rsp3 -perhost 1 -np"
 array=(4)
 
 N=10000000
