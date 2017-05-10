@@ -1,3 +1,4 @@
+read -d '' text << EOF
 #!/bin/bash
 #----------------------------------------------------
 # SLURM job script to run MPI applications on 
@@ -17,3 +18,6 @@
 # Launch the MPI executable named "a.out"
 
 $1
+EOF
+
+echo  "$text"
