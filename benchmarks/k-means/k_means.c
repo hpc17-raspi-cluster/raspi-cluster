@@ -165,7 +165,6 @@ void getInitialClustersFromData(char *file_name,double **centers){
     char *token;
     int i;
     int line_count=0;
-    int prev_i = -1;
     int c_i = 0;
     for (i = 0; i < C ; i++){
       indices[i]=rand() % N;
@@ -260,8 +259,6 @@ int main(int argc, char * argv[])
   class_data_sum = alloc_2d_double(C,d);
 
   if (mpirank==0){
-    int i;
-
     getInitialClustersFromData(f_name,centers);
   }
   MPI_Bcast(&(centers[0][0]), C*d, MPI_DOUBLE,0,MPI_COMM_WORLD);
@@ -269,14 +266,15 @@ int main(int argc, char * argv[])
   double min_res,c_res;
   int min_i;
 
-  /* timing */
-  double     start, end;
-  MPI_Barrier(MPI_COMM_WORLD);
-  start = MPI_Wtime();
 
   double **data;
   data = alloc_2d_double(pN,d);
   readDataPartial(f_name,data);
+    /* timing */
+  double     start, end;
+  MPI_Barrier(MPI_COMM_WORLD);
+  start = MPI_Wtime();
+
   for (i=0; i < N_ITER; i++){
     //For each turn zero the sums
 
