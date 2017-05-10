@@ -47,7 +47,7 @@ int main( int argc, char *argv[])
   /* Total Number of random numbers (this should be increased
    * for actual tests or could be passed in through the command line */
   sscanf(argv[1], "%d", &N);
-  N=N/P
+  N=N/P;
   char *FOLDER_PATH = argv[2];
 
   vec = calloc(N, sizeof(int));
