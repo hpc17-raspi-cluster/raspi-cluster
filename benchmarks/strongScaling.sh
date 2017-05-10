@@ -5,7 +5,7 @@ RUNNER="mpirun -np"
 #RUNNER="mpirun --hosts rsp1,rsp2,rsp3 -perhost 1 -np"
 array=(4 8 16 32 64 128 256)
 
-N=10000000
+N=100000000
 echo "DEBUG: ssort N:$N"
 for i in "${array[@]}"
 do
@@ -32,8 +32,8 @@ for i in "${array[@]}"
 do
 	echo "$RUNNER $i k-means/k_means 3 $N 9 k-means/${N}.data 20"
 	$RUNNER $i k-means/k_means 3 $N 9 k-means/${N}.data 20
-	rm k-means/${N}.data
 done
+rm k-means/${N}.data
 
 N=$((10**6))
 echo "DEBUG: k-means N;$N"
@@ -44,3 +44,4 @@ do
 	$RUNNER $i k-means/k_means 3 $N 9 k-means/${N}.data 200
 	rm k-means/${N}.data
 done
+rm k-means/${N}.data
