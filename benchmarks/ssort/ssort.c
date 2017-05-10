@@ -44,9 +44,10 @@ int main( int argc, char *argv[])
   MPI_Barrier(MPI_COMM_WORLD);
   start = MPI_Wtime();
 
-  /* Number of random numbers per processor (this should be increased
+  /* Total Number of random numbers (this should be increased
    * for actual tests or could be passed in through the command line */
   sscanf(argv[1], "%d", &N);
+  N=N/P
   char *FOLDER_PATH = argv[2];
 
   vec = calloc(N, sizeof(int));
