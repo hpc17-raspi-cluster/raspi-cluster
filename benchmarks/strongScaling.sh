@@ -3,7 +3,7 @@
 #RUNNER="ibrun -o 0 -n"
 RUNNER="mpirun -np"
 #RUNNER="mpirun --hosts rsp1,rsp2,rsp3 -perhost 1 -np"
-array=(4)
+array=(4 8 16 32 64 128 256)
 
 N=10000000
 echo "DEBUG: ssort N:$N"
@@ -14,10 +14,11 @@ do
 	rm ssort/output*.txt
 
 done
+array2=(4 16 64 256)
 
-N=10000
+N=16000
 echo "DEBUG: jacobi-2D N:$N"
-for i in "${array[@]}"
+for i in "${array2[@]}"
 do
 	echo "$RUNNER $i jacobi-2D/jacobi-mpi2D-nonBlocking $N 100"
 	$RUNNER $i jacobi-2D/jacobi-mpi2D-nonBlocking $N 100

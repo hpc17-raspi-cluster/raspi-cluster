@@ -4,7 +4,7 @@
 RUNNER="mpirun -np"
 #RUNNER="mpirun --hosts rsp1,rsp2,rsp3 -perhost 1 -np"
 
-array=(4 8 16 32 64)
+array=(4 8 16 32 64 128 256)
 
 echo "DEBUG: ssort"
 for i in "${array[@]}"
