@@ -126,7 +126,7 @@ void printData(double **data,int row,int col){
 void readDataPartial(char *file_name,double **data){
     int start = mpirank*pN;
     int end = (mpirank+1)*pN;
-    printf("Rank %d range, %d-%d\n",mpirank,start,end);
+    //printf("Rank %d range, %d-%d\n",mpirank,start,end);
     FILE *fp = fopen(file_name, "r");
     const char s[1] = ",";
     char *token;

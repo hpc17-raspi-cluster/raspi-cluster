@@ -42,6 +42,5 @@ for i in "${array[@]}"
 do
 	echo "$RUNNER $i k-means/k_means 3 $N 9 k-means/${N}.data 200"
 	$RUNNER $i k-means/k_means 3 $N 9 k-means/${N}.data 200
-	rm k-means/${N}.data
 done
 rm k-means/${N}.data
