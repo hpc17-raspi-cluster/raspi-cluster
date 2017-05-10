@@ -101,15 +101,16 @@ void jacobi(double *lu, double *rhs, int lN, double hsq, int ssteps)
 
 double **alloc_2d_double(int rows, int cols) {
   // modified from http://stackoverflow.com/questions/5901476/sending-and-receiving-2d-array-over-mpi
+    int i;
     double *data = (double *)malloc(rows*cols*sizeof(double));
     double **array= (double **)malloc(rows*sizeof(double*));
-    for (int i=0; i<rows; i++)
+    for (i=0; i<rows; i++)
         array[i] = &(data[cols*i]);
     return array;
 }
 
 
-void printData(double **data,row,col){
+void printData(double **data,int row,int col){
   int k,j;
   for (k = 0; k < row ; k++)
       {
