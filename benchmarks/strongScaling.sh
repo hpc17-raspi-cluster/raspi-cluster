@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#RUNNER="ibrun -o 0 -n"
-RUNNER="mpirun -np"
+RUNNER="ibrun -o 0 -n"
+#RUNNER="mpirun -np"
 #RUNNER="mpirun --hosts rsp1,rsp2,rsp3 -perhost 1 -np"
-array=(4 8 16 32 64 128 256)
+array=(4 8 16 32 64)
 
 N=100000000
 echo "DEBUG: ssort N:$N"
@@ -14,7 +14,7 @@ do
 	rm ssort/output*.txt
 
 done
-array2=(4 16 64 256)
+array2=(4 16 64)
 
 N=16000
 echo "DEBUG: jacobi-2D N:$N"
