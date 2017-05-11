@@ -17,12 +17,6 @@ Time elapsed is 4.165147 seconds.
 mpirun -np 128 ssort/ssort 1280000000 ssort/
 N: 10000000, P: 128
 Time elapsed is 6.254680 seconds.
-mpirun -np 256 ssort/ssort 2560000000 ssort/
---------------------------------------------------------------------------
-mpirun noticed that process rank 140 with PID 79016 on node c03-03 exited on signal 11 (Segmentation fault).
---------------------------------------------------------------------------
-2 total processes killed (some possibly by mpirun during cleanup)
-DEBUG: jacobi-2D
 mpirun -np 4 jacobi-2D/jacobi-mpi2D-nonBlocking 2000 100
 Iter 0: Residual: 1999.12
 Iter 10: Residual: 1995.62
