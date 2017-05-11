@@ -20,4 +20,4 @@ read -d '' text << EOF
 $1
 EOF
 
-echo  "$text"
+echo  "$text" >${3}${2}.job
