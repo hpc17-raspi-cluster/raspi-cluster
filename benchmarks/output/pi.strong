@@ -1,0 +1,230 @@
+DEBUG: ssort N:10000000
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 4 ssort/ssort 10000000 ssort/
+N: 2500000, P: 4
+Time elapsed is 4.685079 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 8 ssort/ssort 10000000 ssort/
+N: 1250000, P: 8
+Time elapsed is 3.615431 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 16 ssort/ssort 10000000 ssort/
+N: 625000, P: 16
+Time elapsed is 2.807144 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 32 ssort/ssort 10000000 ssort/
+N: 312500, P: 32
+Time elapsed is 2.673286 seconds.
+DEBUG: jacobi-2D N:8000
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 4 jacobi-2D/jacobi-mpi2D-nonBlocking 8000 100
+Iter 0: Residual: 7999.12
+Iter 10: Residual: 7995.62
+Iter 20: Residual: 7993.62
+Iter 30: Residual: 7992.06
+Iter 40: Residual: 7990.74
+Iter 50: Residual: 7989.56
+Iter 60: Residual: 7988.5
+Iter 70: Residual: 7987.52
+Iter 80: Residual: 7986.6
+Iter 90: Residual: 7985.75
+Time elapsed is 49.999180 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 16 jacobi-2D/jacobi-mpi2D-nonBlocking 8000 100
+Iter 0: Residual: 7999.12
+Iter 10: Residual: 7995.62
+Iter 20: Residual: 7993.62
+Iter 30: Residual: 7992.06
+Iter 40: Residual: 7990.74
+Iter 50: Residual: 7989.56
+Iter 60: Residual: 7988.5
+Iter 70: Residual: 7987.52
+Iter 80: Residual: 7986.6
+Iter 90: Residual: 7985.75
+Time elapsed is 26.362334 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 64 jacobi-2D/jacobi-mpi2D-nonBlocking 8000 100
+Iter 0: Residual: 7999.12
+Iter 10: Residual: 7995.62
+Iter 20: Residual: 7993.62
+Iter 30: Residual: 7992.06
+Iter 40: Residual: 7990.74
+Iter 50: Residual: 7989.56
+Iter 60: Residual: 7988.5
+Iter 70: Residual: 7987.52
+Iter 80: Residual: 7986.6
+Iter 90: Residual: 7985.75
+Time elapsed is 30.418314 seconds.
+DEBUG: k-means N:1000000
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 4 k-means/k_means 3 1000000 9 k-means/1000000.data 20
+3d data,Total: 1000000 points,250000 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001193 1.011386 0.020802 
+-0.000850 -1.036510 0.026898 
+-0.028683 0.021843 3.133617 
+-1.043829 0.985988 6.030552 
+-1.017075 -1.067070 6.015840 
+1.048047 -1.029872 6.107106 
+1.071951 0.954896 6.031764 
+0.563307 1.911092 5.732435 
+1.003215 -0.946921 4.682347 
+Time elapsed is 4.496428 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 8 k-means/k_means 3 1000000 9 k-means/1000000.data 20
+3d data,Total: 1000000 points,125000 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001193 1.011386 0.020802 
+-0.000850 -1.036510 0.026898 
+-0.028683 0.021843 3.133617 
+-1.043829 0.985988 6.030552 
+-1.017075 -1.067070 6.015840 
+1.048047 -1.029872 6.107106 
+1.071951 0.954896 6.031764 
+0.563307 1.911092 5.732435 
+1.003215 -0.946921 4.682347 
+Time elapsed is 2.510630 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 16 k-means/k_means 3 1000000 9 k-means/1000000.data 20
+3d data,Total: 1000000 points,62500 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001193 1.011386 0.020802 
+-0.000850 -1.036510 0.026898 
+-0.028683 0.021843 3.133617 
+-1.043829 0.985988 6.030552 
+-1.017075 -1.067070 6.015840 
+1.048047 -1.029872 6.107106 
+1.071951 0.954896 6.031764 
+0.563307 1.911092 5.732435 
+1.003215 -0.946921 4.682347 
+Time elapsed is 2.161992 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 32 k-means/k_means 3 1000000 9 k-means/1000000.data 20
+3d data,Total: 1000000 points,31250 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001193 1.011386 0.020802 
+-0.000850 -1.036510 0.026898 
+-0.028683 0.021843 3.133617 
+-1.043829 0.985988 6.030552 
+-1.017075 -1.067070 6.015840 
+1.048047 -1.029872 6.107106 
+1.071951 0.954896 6.031764 
+0.563307 1.911092 5.732435 
+1.003215 -0.946921 4.682347 
+Time elapsed is 2.265755 seconds.
+DEBUG: k-means N;100000
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 4 k-means/k_means 3 100000 9 k-means/100000.data 200
+3d data,Total: 100000 points,25000 points per process from file k-means/100000.data
+Center 0 from line 16649
+Center 1 from line 30886
+Center 2 from line 36915
+Center 3 from line 38335
+Center 4 from line 47793
+Center 5 from line 60492
+Center 6 from line 85386
+Center 7 from line 89383
+Center 8 from line 92777
+centers:
+-0.999583 -0.992110 0.032088 
+1.025987 1.035538 0.019671 
+1.039831 -1.025648 0.029114 
+-1.048358 1.035814 0.021419 
+-0.009858 0.015819 3.215772 
+-1.064749 0.010325 6.045823 
+0.938434 1.136043 5.996661 
+0.859517 -1.164838 5.987641 
+1.693709 -0.209370 6.202046 
+Time elapsed is 5.449842 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 8 k-means/k_means 3 100000 9 k-means/100000.data 200
+3d data,Total: 100000 points,12500 points per process from file k-means/100000.data
+Center 0 from line 16649
+Center 1 from line 30886
+Center 2 from line 36915
+Center 3 from line 38335
+Center 4 from line 47793
+Center 5 from line 60492
+Center 6 from line 85386
+Center 7 from line 89383
+Center 8 from line 92777
+centers:
+-0.999583 -0.992110 0.032088 
+1.025987 1.035538 0.019671 
+1.039831 -1.025648 0.029114 
+-1.048358 1.035814 0.021419 
+-0.009858 0.015819 3.215772 
+-1.064749 0.010325 6.045823 
+0.938434 1.136043 5.996661 
+0.859517 -1.164838 5.987641 
+1.693709 -0.209370 6.202046 
+Time elapsed is 3.614954 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 16 k-means/k_means 3 100000 9 k-means/100000.data 200
+3d data,Total: 100000 points,6250 points per process from file k-means/100000.data
+Center 0 from line 16649
+Center 1 from line 30886
+Center 2 from line 36915
+Center 3 from line 38335
+Center 4 from line 47793
+Center 5 from line 60492
+Center 6 from line 85386
+Center 7 from line 89383
+Center 8 from line 92777
+centers:
+-0.999583 -0.992110 0.032088 
+1.025987 1.035538 0.019671 
+1.039831 -1.025648 0.029114 
+-1.048358 1.035814 0.021419 
+-0.009858 0.015819 3.215772 
+-1.064749 0.010325 6.045823 
+0.938434 1.136043 5.996661 
+0.859517 -1.164838 5.987641 
+1.693709 -0.209370 6.202046 
+Time elapsed is 2.483715 seconds.
+mpirun --host rpi0,rpi1,rpi2,rpi3 -np 32 k-means/k_means 3 100000 9 k-means/100000.data 200
+3d data,Total: 100000 points,3125 points per process from file k-means/100000.data
+Center 0 from line 16649
+Center 1 from line 30886
+Center 2 from line 36915
+Center 3 from line 38335
+Center 4 from line 47793
+Center 5 from line 60492
+Center 6 from line 85386
+Center 7 from line 89383
+Center 8 from line 92777
+centers:
+-0.999583 -0.992110 0.032088 
+1.025987 1.035538 0.019671 
+1.039831 -1.025648 0.029114 
+-1.048358 1.035814 0.021419 
+-0.009858 0.015819 3.215772 
+-1.064749 0.010325 6.045823 
+0.938434 1.136043 5.996661 
+0.859517 -1.164838 5.987641 
+1.693709 -0.209370 6.202046 
+Time elapsed is 3.072042 seconds.
