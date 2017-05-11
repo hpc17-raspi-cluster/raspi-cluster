@@ -1,97 +1,375 @@
 DEBUG: ssort
-ibrun -o 0 -n 4 ssort/ssort 40000000 ssort/
-TACC: Starting up job 8483938
+ibrun -o 0 -n 4 ssort/ssort 4000000 ssort/
+TACC: Starting up job 8485626
 TACC: Setting up parallel environment for MVAPICH2+mpispawn.
 TACC: Starting parallel tasks...
-N: 10000000, P: 4
-Time elapsed is 3.035327 seconds.
+N: 1000000, P: 4
+Time elapsed is 0.265356 seconds.
  
 TACC: Shutdown complete. Exiting.
-ibrun -o 0 -n 8 ssort/ssort 80000000 ssort/
-TACC: Starting up job 8483938
+ibrun -o 0 -n 8 ssort/ssort 8000000 ssort/
+TACC: Starting up job 8485626
 TACC: Setting up parallel environment for MVAPICH2+mpispawn.
 TACC: Starting parallel tasks...
-N: 10000000, P: 8
-Time elapsed is 3.170407 seconds.
+N: 1000000, P: 8
+Time elapsed is 0.279263 seconds.
  
 TACC: Shutdown complete. Exiting.
-ibrun -o 0 -n 16 ssort/ssort 160000000 ssort/
-TACC: Starting up job 8483938
+ibrun -o 0 -n 16 ssort/ssort 16000000 ssort/
+TACC: Starting up job 8485626
 TACC: Setting up parallel environment for MVAPICH2+mpispawn.
 TACC: Starting parallel tasks...
-N: 10000000, P: 16
-Time elapsed is 3.327407 seconds.
+N: 1000000, P: 16
+Time elapsed is 0.288347 seconds.
  
 TACC: Shutdown complete. Exiting.
-ibrun -o 0 -n 32 ssort/ssort 320000000 ssort/
-TACC: Starting up job 8483938
+ibrun -o 0 -n 32 ssort/ssort 32000000 ssort/
+TACC: Starting up job 8485626
 TACC: Setting up parallel environment for MVAPICH2+mpispawn.
 TACC: Starting parallel tasks...
-N: 10000000, P: 32
-Time elapsed is 3.533341 seconds.
+N: 1000000, P: 32
+Time elapsed is 0.328264 seconds.
  
 TACC: Shutdown complete. Exiting.
-ibrun -o 0 -n 64 ssort/ssort 640000000 ssort/
-TACC: Starting up job 8483938
+ibrun -o 0 -n 64 ssort/ssort 64000000 ssort/
+TACC: Starting up job 8485626
 TACC: Setting up parallel environment for MVAPICH2+mpispawn.
 TACC: Starting parallel tasks...
-N: 10000000, P: 64
-Time elapsed is 3.820808 seconds.
+N: 1000000, P: 64
+Time elapsed is 0.350069 seconds.
  
 TACC: Shutdown complete. Exiting.
-ibrun -o 0 -n 128 ssort/ssort 1280000000 ssort/
-TACC: Starting up job 8483938
-TACC: Setting up parallel environment for MVAPICH2+mpispawn.
-ERROR: -n option requested 128 hosts, only 64 are available!
-ERROR: Number of hosts (requested through -n) plus offset (via -o) exceeds the total number of slots available.
-TACC: MPI job exited with code: 1
-ibrun -o 0 -n 256 ssort/ssort 2560000000 ssort/
-TACC: Starting up job 8483938
-TACC: Setting up parallel environment for MVAPICH2+mpispawn.
-ERROR: -n option requested 256 hosts, only 64 are available!
-ERROR: Number of hosts (requested through -n) plus offset (via -o) exceeds the total number of slots available.
-TACC: MPI job exited with code: 1
 DEBUG: jacobi-2D
 ibrun -o 0 -n 4 jacobi-2D/jacobi-mpi2D-nonBlocking 2000 100
-TACC: Starting up job 8483938
+TACC: Starting up job 8485626
 TACC: Setting up parallel environment for MVAPICH2+mpispawn.
 TACC: Starting parallel tasks...
-TACC: MPI job exited with code: 1
+Iter 0: Residual: 1999.12
+Iter 10: Residual: 1995.62
+Iter 20: Residual: 1993.62
+Iter 30: Residual: 1992.06
+Iter 40: Residual: 1990.74
+Iter 50: Residual: 1989.56
+Iter 60: Residual: 1988.5
+Iter 70: Residual: 1987.52
+Iter 80: Residual: 1986.6
+Iter 90: Residual: 1985.75
+Time elapsed is 0.282770 seconds.
  
 TACC: Shutdown complete. Exiting.
 ibrun -o 0 -n 16 jacobi-2D/jacobi-mpi2D-nonBlocking 4000 100
-TACC: Starting up job 8483938
+TACC: Starting up job 8485626
 TACC: Setting up parallel environment for MVAPICH2+mpispawn.
 TACC: Starting parallel tasks...
-TACC: MPI job exited with code: 1
+Iter 0: Residual: 3999.12
+Iter 10: Residual: 3995.62
+Iter 20: Residual: 3993.62
+Iter 30: Residual: 3992.06
+Iter 40: Residual: 3990.74
+Iter 50: Residual: 3989.56
+Iter 60: Residual: 3988.5
+Iter 70: Residual: 3987.52
+Iter 80: Residual: 3986.6
+Iter 90: Residual: 3985.75
+Time elapsed is 0.544165 seconds.
  
 TACC: Shutdown complete. Exiting.
 ibrun -o 0 -n 64 jacobi-2D/jacobi-mpi2D-nonBlocking 8000 100
-TACC: Starting up job 8483938
+TACC: Starting up job 8485626
 TACC: Setting up parallel environment for MVAPICH2+mpispawn.
 TACC: Starting parallel tasks...
-TACC: MPI job exited with code: 1
+Iter 0: Residual: 7999.12
+Iter 10: Residual: 7995.62
+Iter 20: Residual: 7993.62
+Iter 30: Residual: 7992.06
+Iter 40: Residual: 7990.74
+Iter 50: Residual: 7989.56
+Iter 60: Residual: 7988.5
+Iter 70: Residual: 7987.52
+Iter 80: Residual: 7986.6
+Iter 90: Residual: 7985.75
+Time elapsed is 0.529983 seconds.
  
 TACC: Shutdown complete. Exiting.
-ibrun -o 0 -n 256 jacobi-2D/jacobi-mpi2D-nonBlocking 16000 100
-TACC: Starting up job 8483938
-TACC: Setting up parallel environment for MVAPICH2+mpispawn.
-ERROR: -n option requested 256 hosts, only 64 are available!
-ERROR: Number of hosts (requested through -n) plus offset (via -o) exceeds the total number of slots available.
-TACC: MPI job exited with code: 1
 DEBUG: k-means 1m
-ibrun -o 0 -n 4 k-means/k_means 3 4000000 9 k-means/4m.data 10
-ibrun -o 0 -n 8 k-means/k_means 3 8000000 9 k-means/8m.data 10
-ibrun -o 0 -n 16 k-means/k_means 3 16000000 9 k-means/16m.data 10
-ibrun -o 0 -n 32 k-means/k_means 3 32000000 9 k-means/32m.data 10
-ibrun -o 0 -n 64 k-means/k_means 3 64000000 9 k-means/64m.data 10
-ibrun -o 0 -n 128 k-means/k_means 3 128000000 9 k-means/128m.data 10
-ibrun -o 0 -n 256 k-means/k_means 3 256000000 9 k-means/256m.data 10
+ibrun -o 0 -n 4 k-means/k_means 3 400000 9 k-means/4m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 400000 points,100000 points per process from file k-means/4m.data
+Center 0 from line 92777
+Center 1 from line 116649
+Center 2 from line 130886
+Center 3 from line 147793
+Center 4 from line 160492
+Center 5 from line 236915
+Center 6 from line 238335
+Center 7 from line 285386
+Center 8 from line 289383
+centers:
+1.010805 0.996962 0.027525 
+-1.031223 0.994928 0.030394 
+0.000687 -0.024978 3.108759 
+1.029029 -1.059004 -0.014742 
+-1.059920 -1.057330 -0.013495 
+1.000094 1.007289 6.020086 
+-1.066510 1.006992 6.020081 
+1.009173 -1.066114 6.022620 
+-1.059956 -1.069024 6.011985 
+Time elapsed is 0.101377 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 8 k-means/k_means 3 800000 9 k-means/8m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 800000 points,100000 points per process from file k-means/8m.data
+Center 0 from line 92777
+Center 1 from line 147793
+Center 2 from line 160492
+Center 3 from line 236915
+Center 4 from line 238335
+Center 5 from line 289383
+Center 6 from line 516649
+Center 7 from line 530886
+Center 8 from line 685386
+centers:
+0.566201 -0.590105 0.160048 
+-1.203687 -1.013253 -0.019785 
+-1.033111 1.104155 0.015271 
+-0.020729 0.014200 3.239505 
+1.089770 1.179933 -0.029446 
+1.467753 -1.446910 -0.130855 
+-1.045000 0.002528 6.046765 
+1.003830 1.056968 6.020194 
+0.975385 -1.121087 6.013449 
+Time elapsed is 0.104147 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 16 k-means/k_means 3 1600000 9 k-means/16m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 1600000 points,100000 points per process from file k-means/16m.data
+Center 0 from line 92777
+Center 1 from line 160492
+Center 2 from line 238335
+Center 3 from line 530886
+Center 4 from line 947793
+Center 5 from line 1036915
+Center 6 from line 1089383
+Center 7 from line 1316649
+Center 8 from line 1485386
+centers:
+0.972913 -0.962585 0.031602 
+-1.025828 1.026485 0.023587 
+-1.040999 -1.041044 0.021418 
+1.036199 1.053264 0.021121 
+-1.005417 1.012249 5.979215 
+1.041259 0.993747 5.977135 
+-1.004339 -1.036887 5.980690 
+0.010741 -0.012059 3.046125 
+1.056739 -1.057691 6.020877 
+Time elapsed is 0.103256 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 32 k-means/k_means 3 3200000 9 k-means/32m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 3200000 points,100000 points per process from file k-means/32m.data
+Center 0 from line 1316649
+Center 1 from line 1692777
+Center 2 from line 1760492
+Center 3 from line 1838335
+Center 4 from line 2130886
+Center 5 from line 2547793
+Center 6 from line 2636915
+Center 7 from line 2689383
+Center 8 from line 3085386
+centers:
+0.001120 0.000571 0.022037 
+-0.023933 0.003128 3.062923 
+0.444766 0.169441 5.581318 
+-1.126130 1.086993 6.082261 
+-1.144921 -1.098426 6.022446 
+1.149140 1.224737 6.194107 
+1.154032 -1.103563 6.180142 
+0.665090 -1.720150 5.514200 
+-0.050645 -1.027737 7.135957 
+Time elapsed is 0.120928 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 64 k-means/k_means 3 6400000 9 k-means/64m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 6400000 points,100000 points per process from file k-means/64m.data
+Center 0 from line 1316649
+Center 1 from line 1838335
+Center 2 from line 2130886
+Center 3 from line 3085386
+Center 4 from line 4892777
+Center 5 from line 4960492
+Center 6 from line 5747793
+Center 7 from line 5836915
+Center 8 from line 5889383
+centers:
+-1.026372 0.004716 0.024866 
+0.985195 1.044946 0.024413 
+0.961295 -1.097281 0.022767 
+-0.000358 -0.000543 3.174337 
+0.902449 -0.154053 6.072605 
+-1.086574 -1.045810 6.013861 
+0.981630 1.446684 5.979461 
+-1.089065 1.032072 6.016374 
+1.097251 -1.546486 5.965683 
+Time elapsed is 0.122396 seconds.
+ 
+TACC: Shutdown complete. Exiting.
 DEBUG: k-means 1e5
 ibrun -o 0 -n 4 k-means/k_means 3 400000 9 k-means/4m.data 100
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 400000 points,100000 points per process from file k-means/4m.data
+Center 0 from line 92777
+Center 1 from line 116649
+Center 2 from line 130886
+Center 3 from line 147793
+Center 4 from line 160492
+Center 5 from line 236915
+Center 6 from line 238335
+Center 7 from line 285386
+Center 8 from line 289383
+centers:
+1.008464 0.997430 0.027388 
+-1.032761 0.994371 0.030866 
+-0.000292 -0.026148 3.108355 
+1.030035 -1.058056 -0.014980 
+-1.059681 -1.058281 -0.013971 
+1.011386 1.012477 6.019862 
+-1.058050 1.019242 6.018342 
+1.013066 -1.059472 6.022931 
+-1.055367 -1.062536 6.013869 
+Time elapsed is 1.006689 seconds.
+ 
+TACC: Shutdown complete. Exiting.
 ibrun -o 0 -n 8 k-means/k_means 3 800000 9 k-means/8m.data 100
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 800000 points,100000 points per process from file k-means/8m.data
+Center 0 from line 92777
+Center 1 from line 147793
+Center 2 from line 160492
+Center 3 from line 236915
+Center 4 from line 238335
+Center 5 from line 289383
+Center 6 from line 516649
+Center 7 from line 530886
+Center 8 from line 685386
+centers:
+0.806703 -0.734991 0.148528 
+-1.105629 -1.002437 0.000647 
+-1.013782 1.064765 0.025069 
+-0.018797 0.015205 3.225786 
+1.061747 1.131711 -0.027582 
+1.402104 -1.592968 -0.299440 
+-1.045475 0.003301 6.046244 
+1.004891 1.054359 6.020158 
+0.973429 -1.122670 6.012858 
+Time elapsed is 1.022517 seconds.
+ 
+TACC: Shutdown complete. Exiting.
 ibrun -o 0 -n 16 k-means/k_means 3 1600000 9 k-means/16m.data 100
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 1600000 points,100000 points per process from file k-means/16m.data
+Center 0 from line 92777
+Center 1 from line 160492
+Center 2 from line 238335
+Center 3 from line 530886
+Center 4 from line 947793
+Center 5 from line 1036915
+Center 6 from line 1089383
+Center 7 from line 1316649
+Center 8 from line 1485386
+centers:
+0.990528 -0.990260 0.023653 
+-1.020845 1.024124 0.022762 
+-1.036753 -1.036122 0.024648 
+1.033890 1.039616 0.025638 
+-1.004496 1.013575 5.979201 
+1.041512 0.992901 5.976775 
+-1.004690 -1.036008 5.980525 
+0.011665 -0.013151 3.044507 
+1.056357 -1.058108 6.020998 
+Time elapsed is 1.020734 seconds.
+ 
+TACC: Shutdown complete. Exiting.
 ibrun -o 0 -n 32 k-means/k_means 3 3200000 9 k-means/32m.data 100
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 3200000 points,100000 points per process from file k-means/32m.data
+Center 0 from line 1316649
+Center 1 from line 1692777
+Center 2 from line 1760492
+Center 3 from line 1838335
+Center 4 from line 2130886
+Center 5 from line 2547793
+Center 6 from line 2636915
+Center 7 from line 2689383
+Center 8 from line 3085386
+centers:
+0.001257 0.000208 0.022737 
+-0.048528 0.018175 3.060271 
+1.020244 1.061253 6.015678 
+-1.078069 1.018525 5.925057 
+-1.043710 -1.052625 6.027076 
+1.065791 -0.947296 6.084351 
+0.674829 -1.787077 5.549181 
+0.668571 -0.157177 4.436161 
+-0.721318 0.808036 7.008600 
+Time elapsed is 1.063364 seconds.
+ 
+TACC: Shutdown complete. Exiting.
 ibrun -o 0 -n 64 k-means/k_means 3 6400000 9 k-means/64m.data 100
-ibrun -o 0 -n 128 k-means/k_means 3 12800000 9 k-means/128m.data 100
-ibrun -o 0 -n 256 k-means/k_means 3 25600000 9 k-means/256m.data 100
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+TACC: Starting up job 8485626
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+3d data,Total: 6400000 points,100000 points per process from file k-means/64m.data
+Center 0 from line 1316649
+Center 1 from line 1838335
+Center 2 from line 2130886
+Center 3 from line 3085386
+Center 4 from line 4892777
+Center 5 from line 4960492
+Center 6 from line 5747793
+Center 7 from line 5836915
+Center 8 from line 5889383
+centers:
+-1.026199 0.005052 0.024923 
+0.985808 1.044081 0.024395 
+0.960846 -1.098148 0.022699 
+-0.002389 0.003447 3.171268 
+0.846332 -0.847253 6.065820 
+-1.104681 -1.030176 6.012126 
+1.030492 1.103851 6.012890 
+-1.058519 1.060261 6.017091 
+1.591297 -1.579902 5.773451 
+Time elapsed is 1.116398 seconds.
+ 
+TACC: Shutdown complete. Exiting.

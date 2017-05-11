@@ -1,0 +1,213 @@
+DEBUG: ssort
+mpirun -np 4 ssort/ssort 40000000 ssort/
+N: 10000000, P: 4
+Time elapsed is 2.700217 seconds.
+mpirun -np 8 ssort/ssort 80000000 ssort/
+N: 10000000, P: 8
+Time elapsed is 2.812433 seconds.
+mpirun -np 16 ssort/ssort 160000000 ssort/
+N: 10000000, P: 16
+Time elapsed is 2.972672 seconds.
+mpirun -np 32 ssort/ssort 320000000 ssort/
+N: 10000000, P: 32
+Time elapsed is 3.559157 seconds.
+mpirun -np 64 ssort/ssort 640000000 ssort/
+N: 10000000, P: 64
+Time elapsed is 4.165147 seconds.
+mpirun -np 128 ssort/ssort 1280000000 ssort/
+N: 10000000, P: 128
+Time elapsed is 6.254680 seconds.
+mpirun -np 256 ssort/ssort 2560000000 ssort/
+--------------------------------------------------------------------------
+mpirun noticed that process rank 140 with PID 79016 on node c03-03 exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+2 total processes killed (some possibly by mpirun during cleanup)
+DEBUG: jacobi-2D
+mpirun -np 4 jacobi-2D/jacobi-mpi2D-nonBlocking 2000 100
+Iter 0: Residual: 1999.12
+Iter 10: Residual: 1995.62
+Iter 20: Residual: 1993.62
+Iter 30: Residual: 1992.06
+Iter 40: Residual: 1990.74
+Iter 50: Residual: 1989.56
+Iter 60: Residual: 1988.5
+Iter 70: Residual: 1987.52
+Iter 80: Residual: 1986.6
+Iter 90: Residual: 1985.75
+Time elapsed is 0.202980 seconds.
+mpirun -np 16 jacobi-2D/jacobi-mpi2D-nonBlocking 4000 100
+Iter 0: Residual: 3999.12
+Iter 10: Residual: 3995.62
+Iter 20: Residual: 3993.62
+Iter 30: Residual: 3992.06
+Iter 40: Residual: 3990.74
+Iter 50: Residual: 3989.56
+Iter 60: Residual: 3988.5
+Iter 70: Residual: 3987.52
+Iter 80: Residual: 3986.6
+Iter 90: Residual: 3985.75
+Time elapsed is 0.372385 seconds.
+mpirun -np 64 jacobi-2D/jacobi-mpi2D-nonBlocking 8000 100
+Iter 0: Residual: 7999.12
+Iter 10: Residual: 7995.62
+Iter 20: Residual: 7993.62
+Iter 30: Residual: 7992.06
+Iter 40: Residual: 7990.74
+Iter 50: Residual: 7989.56
+Iter 60: Residual: 7988.5
+Iter 70: Residual: 7987.52
+Iter 80: Residual: 7986.6
+Iter 90: Residual: 7985.75
+Time elapsed is 0.638124 seconds.
+mpirun -np 256 jacobi-2D/jacobi-mpi2D-nonBlocking 16000 100
+Iter 0: Residual: 15999.1
+Iter 10: Residual: 15995.6
+Iter 20: Residual: 15993.6
+Iter 30: Residual: 15992.1
+Iter 40: Residual: 15990.7
+Iter 50: Residual: 15989.6
+Iter 60: Residual: 15988.5
+Iter 70: Residual: 15987.5
+Iter 80: Residual: 15986.6
+Iter 90: Residual: 15985.7
+Time elapsed is 1.043532 seconds.
+DEBUG: k-means 1m
+mpirun -np 4 k-means/k_means 3 4000000 9 k-means/4m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+3d data,Total: 4000000 points,1000000 points per process from file k-means/4m.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 1692777
+Center 4 from line 1747793
+Center 5 from line 1760492
+Center 6 from line 2636915
+Center 7 from line 2930886
+Center 8 from line 3885386
+centers:
+0.000870 1.002044 0.002997 
+-1.004554 -0.994761 0.002903 
+-1.001130 -1.000054 5.999222 
+-0.004485 0.006821 3.004985 
+1.005352 -0.996745 -0.001499 
+1.002680 -1.001635 6.001119 
+-1.002049 1.003080 6.001526 
+0.464824 -0.364857 3.438781 
+1.001667 1.002899 6.002277 
+Time elapsed is 0.836998 seconds.
+mpirun -np 8 k-means/k_means 3 8000000 9 k-means/8m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+3d data,Total: 8000000 points,1000000 points per process from file k-means/8m.data
+Center 0 from line 238335
+Center 1 from line 1692777
+Center 2 from line 1760492
+Center 3 from line 2636915
+Center 4 from line 4289383
+Center 5 from line 4516649
+Center 6 from line 5747793
+Center 7 from line 6930886
+Center 8 from line 7885386
+centers:
+-1.000037 -1.000373 5.996572 
+-0.005153 -0.991349 0.002894 
+1.000255 1.000510 5.997423 
+-1.001491 0.993557 5.991089 
+0.991493 -0.998611 6.001477 
+-0.988053 1.617916 6.606395 
+0.004710 1.003578 0.002797 
+0.000245 0.000395 2.999507 
+1.678195 -1.207266 5.660532 
+Time elapsed is 0.901229 seconds.
+mpirun -np 16 k-means/k_means 3 16000000 9 k-means/16m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+3d data,Total: 16000000 points,1000000 points per process from file k-means/16m.data
+Center 0 from line 1692777
+Center 1 from line 1760492
+Center 2 from line 2636915
+Center 3 from line 4516649
+Center 4 from line 5747793
+Center 5 from line 8238335
+Center 6 from line 12289383
+Center 7 from line 14930886
+Center 8 from line 15885386
+centers:
+1.000168 1.000549 5.997067 
+-1.000814 1.001045 5.996423 
+-1.001484 0.000653 0.002857 
+-1.000533 -1.000351 5.997422 
+0.004292 -0.001883 2.995065 
+1.002087 -0.997492 5.993122 
+1.051714 -1.412024 6.754635 
+0.996665 1.005873 -0.001433 
+0.996552 -1.006025 -0.001843 
+Time elapsed is 0.923205 seconds.
+mpirun -np 32 k-means/k_means 3 32000000 9 k-means/32m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+3d data,Total: 32000000 points,1000000 points per process from file k-means/32m.data
+Center 0 from line 5747793
+Center 1 from line 8238335
+Center 2 from line 12289383
+Center 3 from line 14930886
+Center 4 from line 15885386
+Center 5 from line 17692777
+Center 6 from line 17760492
+Center 7 from line 18636915
+Center 8 from line 20516649
+centers:
+-0.000240 1.001603 0.002921 
+-0.992449 0.992146 5.989822 
+0.001640 -0.004716 3.004134 
+1.002745 1.001893 6.001544 
+1.005450 -0.996372 -0.001591 
+1.002175 -1.002538 6.002077 
+-1.001749 -1.002746 6.002171 
+-1.403712 1.403158 6.402262 
+-1.006328 -0.996248 -0.001722 
+Time elapsed is 1.104582 seconds.
+mpirun -np 64 k-means/k_means 3 64000000 9 k-means/64m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+3d data,Total: 64000000 points,1000000 points per process from file k-means/64m.data
+Center 0 from line 12289383
+Center 1 from line 14930886
+Center 2 from line 15885386
+Center 3 from line 17692777
+Center 4 from line 20516649
+Center 5 from line 37747793
+Center 6 from line 40238335
+Center 7 from line 49760492
+Center 8 from line 50636915
+centers:
+-0.000038 -1.001369 0.002852 
+0.995144 -0.991159 5.992354 
+-1.000789 -1.000379 5.997273 
+1.000328 1.001648 5.997214 
+-1.000633 1.000629 5.997033 
+1.356542 -1.568678 6.299234 
+1.004057 0.995186 0.002846 
+-1.004540 0.995371 0.002949 
+0.000109 0.000065 3.000183 
+Time elapsed is 1.158101 seconds.
+mpirun -np 128 k-means/k_means 3 128000000 9 k-means/128m.data 10
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+3d data,Total: 128000000 points,1000000 points per process from file k-means/128m.data
+Center 0 from line 12289383
+Center 1 from line 17692777
+Center 2 from line 37747793
+Center 3 from line 40238335
+Center 4 from line 50636915
+Center 5 from line 78930886
+Center 6 from line 79885386
+Center 7 from line 84516649
+Center 8 from line 113760492
+centers:
+0.000168 0.002182 2.993411 
+1.002269 -1.001833 6.001578 
+-0.000126 1.003606 -0.003536 
+-0.995194 -0.994276 5.994764 
+-1.001835 1.002824 6.001708 
+1.002392 1.002302 6.001674 
+-1.005571 -0.996641 -0.001779 
+1.006096 -0.996283 -0.001577 
+-1.394806 -1.407416 6.408318 
+Time elapsed is 1.074602 seconds.
+mpirun -np 256 k-means/k_means 3 256000000 9 k-means/256m.data 10

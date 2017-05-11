@@ -9,7 +9,7 @@ array=(4 8 16 32 64)
 echo "DEBUG: ssort"
 for i in "${array[@]}"
 do
-	N=$((10**7*$i))
+	N=$((10**6*$i))
 	echo "$RUNNER $i ssort/ssort $N ssort/"
 	$RUNNER $i ssort/ssort $N ssort/
 	rm ssort/output*.txt
@@ -31,7 +31,7 @@ done
 echo "DEBUG: k-means 1m"
 for i in "${array[@]}"
 do
-	N=$((10**6*$i))
+	N=$((10**5*$i))
 	echo "$RUNNER $i k-means/k_means 3 $N 9 k-means/${i}m.data 10"
 	python k-means/create_data.py $N k-means/${i}m.data &&
 	$RUNNER $i k-means/k_means 3 $N 9 k-means/${i}m.data 10
