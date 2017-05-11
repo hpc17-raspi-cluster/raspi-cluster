@@ -1,0 +1,71 @@
+DEBUG: ssort
+mpirun -np 4 ssort/ssort 40000000 ssort/
+N: 10000000, P: 4
+Time elapsed is 24.087827 seconds.
+mpirun -np 8 ssort/ssort 80000000 ssort/
+N: 10000000, P: 8
+Time elapsed is 47.673210 seconds.
+mpirun -np 16 ssort/ssort 160000000 ssort/
+N: 10000000, P: 16
+Time elapsed is 204.349625 seconds.
+mpirun -np 32 ssort/ssort 320000000 ssort/
+N: 10000000, P: 32
+Time elapsed is 245.960521 seconds.
+mpirun -np 64 ssort/ssort 640000000 ssort/
+mpirun -np 128 ssort/ssort 1280000000 ssort/
+mpirun -np 256 ssort/ssort 2560000000 ssort/
+--------------------------------------------------------------------------
+mpirun noticed that process rank 239 with PID 74691 on node c22-01 exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------
+2 total processes killed (some possibly by mpirun during cleanup)
+DEBUG: jacobi-2D
+mpirun -np 4 jacobi-2D/jacobi-mpi2D-nonBlocking 2000 100
+Iter 0: Residual: 1999.12
+Iter 10: Residual: 1995.62
+Iter 20: Residual: 1993.62
+Iter 30: Residual: 1992.06
+Iter 40: Residual: 1990.74
+Iter 50: Residual: 1989.56
+Iter 60: Residual: 1988.5
+Iter 70: Residual: 1987.52
+Iter 80: Residual: 1986.6
+Iter 90: Residual: 1985.75
+Time elapsed is 0.249357 seconds.
+mpirun -np 16 jacobi-2D/jacobi-mpi2D-nonBlocking 4000 100
+Iter 0: Residual: 3999.12
+Iter 10: Residual: 3995.62
+Iter 20: Residual: 3993.62
+Iter 30: Residual: 3992.06
+Iter 40: Residual: 3990.74
+Iter 50: Residual: 3989.56
+Iter 60: Residual: 3988.5
+Iter 70: Residual: 3987.52
+Iter 80: Residual: 3986.6
+Iter 90: Residual: 3985.75
+Time elapsed is 5.160141 seconds.
+mpirun -np 64 jacobi-2D/jacobi-mpi2D-nonBlocking 8000 100
+Iter 0: Residual: 7999.12
+Iter 10: Residual: 7995.62
+Iter 20: Residual: 7993.62
+Iter 30: Residual: 7992.06
+Iter 40: Residual: 7990.74
+Iter 50: Residual: 7989.56
+Iter 60: Residual: 7988.5
+Iter 70: Residual: 7987.52
+Iter 80: Residual: 7986.6
+Iter 90: Residual: 7985.75
+Time elapsed is 18.510098 seconds.
+mpirun -np 256 jacobi-2D/jacobi-mpi2D-nonBlocking 16000 100
+Iter 0: Residual: 15999.1
+Iter 10: Residual: 15995.6
+Iter 20: Residual: 15993.6
+Iter 30: Residual: 15992.1
+Iter 40: Residual: 15990.7
+Iter 50: Residual: 15989.6
+Iter 60: Residual: 15988.5
+Iter 70: Residual: 15987.5
+Iter 80: Residual: 15986.6
+Iter 90: Residual: 15985.7
+Time elapsed is 45.745947 seconds.
+DEBUG: k-means 1m
+mpirun -np 4 k-means/k_means 3 4000000 9 k-means/4m.data 10

@@ -1,0 +1,277 @@
+DEBUG: ssort N:100000000
+mpiexec -np 4 ssort/ssort 100000000 ssort/
+N: 25000000, P: 4
+Time elapsed is 9.377742 seconds.
+mpiexec -np 8 ssort/ssort 100000000 ssort/
+N: 12500000, P: 8
+Time elapsed is 9.790103 seconds.
+mpiexec -np 16 ssort/ssort 100000000 ssort/
+N: 6250000, P: 16
+Time elapsed is 12.115020 seconds.
+mpiexec -np 32 ssort/ssort 100000000 ssort/
+N: 3125000, P: 32
+Time elapsed is 13.333737 seconds.
+mpiexec -np 64 ssort/ssort 100000000 ssort/
+N: 1562500, P: 64
+Time elapsed is 22.534188 seconds.
+DEBUG: jacobi-2D N:16000
+mpiexec -np 4 jacobi-2D/jacobi-mpi2D-nonBlocking 16000 100
+Iter 0: Residual: 15999.1
+Iter 10: Residual: 15995.6
+Iter 20: Residual: 15993.6
+Iter 30: Residual: 15992.1
+Iter 40: Residual: 15990.7
+Iter 50: Residual: 15989.6
+Iter 60: Residual: 15988.5
+Iter 70: Residual: 15987.5
+Iter 80: Residual: 15986.6
+Iter 90: Residual: 15985.7
+Time elapsed is 48.612760 seconds.
+mpiexec -np 16 jacobi-2D/jacobi-mpi2D-nonBlocking 16000 100
+Iter 0: Residual: 15999.1
+Iter 10: Residual: 15995.6
+Iter 20: Residual: 15993.6
+Iter 30: Residual: 15992.1
+Iter 40: Residual: 15990.7
+Iter 50: Residual: 15989.6
+Iter 60: Residual: 15988.5
+Iter 70: Residual: 15987.5
+Iter 80: Residual: 15986.6
+Iter 90: Residual: 15985.7
+Time elapsed is 37.138766 seconds.
+mpiexec -np 64 jacobi-2D/jacobi-mpi2D-nonBlocking 16000 100
+Iter 0: Residual: 15999.1
+Iter 10: Residual: 15995.6
+Iter 20: Residual: 15993.6
+Iter 30: Residual: 15992.1
+Iter 40: Residual: 15990.7
+Iter 50: Residual: 15989.6
+Iter 60: Residual: 15988.5
+Iter 70: Residual: 15987.5
+Iter 80: Residual: 15986.6
+Iter 90: Residual: 15985.7
+Time elapsed is 16.431876 seconds.
+DEBUG: k-means N:10000000
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+mpiexec -np 4 k-means/k_means 3 10000000 9 k-means/10000000.data 20
+3d data,Total: 10000000 points,2500000 points per process from file k-means/10000000.data
+Center 0 from line 1692777
+Center 1 from line 4238335
+Center 2 from line 4289383
+Center 3 from line 4636915
+Center 4 from line 6516649
+Center 5 from line 6930886
+Center 6 from line 7747793
+Center 7 from line 9760492
+Center 8 from line 9885386
+centers:
+0.003505 1.027697 0.023494 
+1.043075 -0.985862 0.024304 
+-1.098107 -0.959456 0.022873 
+-0.002649 0.001455 3.168491 
+-1.007632 1.015259 6.023061 
+-1.049903 -1.035886 5.999541 
+1.061967 1.048803 6.019567 
+1.076037 -0.965996 5.963231 
+0.519965 -1.655983 6.560031 
+Time elapsed is 3.922562 seconds.
+mpiexec -np 8 k-means/k_means 3 10000000 9 k-means/10000000.data 20
+3d data,Total: 10000000 points,1250000 points per process from file k-means/10000000.data
+Center 0 from line 1692777
+Center 1 from line 4238335
+Center 2 from line 4289383
+Center 3 from line 4636915
+Center 4 from line 6516649
+Center 5 from line 6930886
+Center 6 from line 7747793
+Center 7 from line 9760492
+Center 8 from line 9885386
+centers:
+0.003505 1.027697 0.023494 
+1.043075 -0.985862 0.024304 
+-1.098107 -0.959456 0.022873 
+-0.002649 0.001455 3.168491 
+-1.007632 1.015259 6.023061 
+-1.049903 -1.035886 5.999541 
+1.061967 1.048803 6.019567 
+1.076037 -0.965996 5.963231 
+0.519965 -1.655983 6.560031 
+Time elapsed is 2.192758 seconds.
+mpiexec -np 16 k-means/k_means 3 10000000 9 k-means/10000000.data 20
+3d data,Total: 10000000 points,625000 points per process from file k-means/10000000.data
+Center 0 from line 1692777
+Center 1 from line 4238335
+Center 2 from line 4289383
+Center 3 from line 4636915
+Center 4 from line 6516649
+Center 5 from line 6930886
+Center 6 from line 7747793
+Center 7 from line 9760492
+Center 8 from line 9885386
+centers:
+0.003505 1.027697 0.023494 
+1.043075 -0.985862 0.024304 
+-1.098107 -0.959456 0.022873 
+-0.002649 0.001455 3.168491 
+-1.007632 1.015259 6.023061 
+-1.049903 -1.035886 5.999541 
+1.061967 1.048803 6.019567 
+1.076037 -0.965996 5.963231 
+0.519965 -1.655983 6.560031 
+Time elapsed is 1.149596 seconds.
+mpiexec -np 32 k-means/k_means 3 10000000 9 k-means/10000000.data 20
+3d data,Total: 10000000 points,312500 points per process from file k-means/10000000.data
+Center 0 from line 1692777
+Center 1 from line 4238335
+Center 2 from line 4289383
+Center 3 from line 4636915
+Center 4 from line 6516649
+Center 5 from line 6930886
+Center 6 from line 7747793
+Center 7 from line 9760492
+Center 8 from line 9885386
+centers:
+0.003505 1.027697 0.023494 
+1.043075 -0.985862 0.024304 
+-1.098107 -0.959456 0.022873 
+-0.002649 0.001455 3.168491 
+-1.007632 1.015259 6.023061 
+-1.049903 -1.035886 5.999541 
+1.061967 1.048803 6.019567 
+1.076037 -0.965996 5.963231 
+0.519965 -1.655983 6.560031 
+Time elapsed is 0.797316 seconds.
+mpiexec -np 64 k-means/k_means 3 10000000 9 k-means/10000000.data 20
+3d data,Total: 10000000 points,156250 points per process from file k-means/10000000.data
+Center 0 from line 1692777
+Center 1 from line 4238335
+Center 2 from line 4289383
+Center 3 from line 4636915
+Center 4 from line 6516649
+Center 5 from line 6930886
+Center 6 from line 7747793
+Center 7 from line 9760492
+Center 8 from line 9885386
+centers:
+0.003505 1.027697 0.023494 
+1.043075 -0.985862 0.024304 
+-1.098107 -0.959456 0.022873 
+-0.002649 0.001455 3.168491 
+-1.007632 1.015259 6.023061 
+-1.049903 -1.035886 5.999541 
+1.061967 1.048803 6.019567 
+1.076037 -0.965996 5.963231 
+0.519965 -1.655983 6.560031 
+Time elapsed is 0.296243 seconds.
+DEBUG: k-means N;1000000
+('Centers: ', [[-1, 1, 0], [-1, -1, 0], [1, 1, 0], [1, -1, 0], [0, 0, 3], [-1, 1, 6], [-1, -1, 6], [1, 1, 6], [1, -1, 6]])
+mpiexec -np 4 k-means/k_means 3 1000000 9 k-means/1000000.data 200
+3d data,Total: 1000000 points,250000 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001285 1.011456 0.020608 
+-0.000710 -1.036536 0.026768 
+-0.031001 0.025100 3.110056 
+-1.049034 0.983066 6.035946 
+-1.021243 -1.063601 6.023542 
+1.059833 -1.039276 6.091376 
+1.075708 0.960757 6.044058 
+0.455213 1.793360 5.596431 
+0.744752 -0.885315 4.672717 
+Time elapsed is 3.870848 seconds.
+mpiexec -np 8 k-means/k_means 3 1000000 9 k-means/1000000.data 200
+3d data,Total: 1000000 points,125000 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001285 1.011456 0.020608 
+-0.000710 -1.036536 0.026768 
+-0.031001 0.025100 3.110056 
+-1.049034 0.983066 6.035946 
+-1.021243 -1.063601 6.023542 
+1.059833 -1.039276 6.091376 
+1.075708 0.960757 6.044058 
+0.455213 1.793360 5.596431 
+0.744752 -0.885315 4.672717 
+Time elapsed is 1.946990 seconds.
+mpiexec -np 16 k-means/k_means 3 1000000 9 k-means/1000000.data 200
+3d data,Total: 1000000 points,62500 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001285 1.011456 0.020608 
+-0.000710 -1.036536 0.026768 
+-0.031001 0.025100 3.110056 
+-1.049034 0.983066 6.035946 
+-1.021243 -1.063601 6.023542 
+1.059833 -1.039276 6.091376 
+1.075708 0.960757 6.044058 
+0.455213 1.793360 5.596431 
+0.744752 -0.885315 4.672717 
+Time elapsed is 1.051998 seconds.
+mpiexec -np 32 k-means/k_means 3 1000000 9 k-means/1000000.data 200
+3d data,Total: 1000000 points,31250 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001285 1.011456 0.020608 
+-0.000710 -1.036536 0.026768 
+-0.031001 0.025100 3.110056 
+-1.049034 0.983066 6.035946 
+-1.021243 -1.063601 6.023542 
+1.059833 -1.039276 6.091376 
+1.075708 0.960757 6.044058 
+0.455213 1.793360 5.596431 
+0.744752 -0.885315 4.672717 
+Time elapsed is 0.653520 seconds.
+mpiexec -np 64 k-means/k_means 3 1000000 9 k-means/1000000.data 200
+3d data,Total: 1000000 points,15625 points per process from file k-means/1000000.data
+Center 0 from line 238335
+Center 1 from line 289383
+Center 2 from line 516649
+Center 3 from line 636915
+Center 4 from line 692777
+Center 5 from line 747793
+Center 6 from line 760492
+Center 7 from line 885386
+Center 8 from line 930886
+centers:
+0.001285 1.011456 0.020608 
+-0.000710 -1.036536 0.026768 
+-0.031001 0.025100 3.110056 
+-1.049034 0.983066 6.035946 
+-1.021243 -1.063601 6.023542 
+1.059833 -1.039276 6.091376 
+1.075708 0.960757 6.044058 
+0.455213 1.793360 5.596431 
+0.744752 -0.885315 4.672717 
+Time elapsed is 0.273113 seconds.
