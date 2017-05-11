@@ -1,0 +1,97 @@
+DEBUG: ssort
+ibrun -o 0 -n 4 ssort/ssort 40000000 ssort/
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+N: 10000000, P: 4
+Time elapsed is 3.035327 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 8 ssort/ssort 80000000 ssort/
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+N: 10000000, P: 8
+Time elapsed is 3.170407 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 16 ssort/ssort 160000000 ssort/
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+N: 10000000, P: 16
+Time elapsed is 3.327407 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 32 ssort/ssort 320000000 ssort/
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+N: 10000000, P: 32
+Time elapsed is 3.533341 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 64 ssort/ssort 640000000 ssort/
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+N: 10000000, P: 64
+Time elapsed is 3.820808 seconds.
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 128 ssort/ssort 1280000000 ssort/
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+ERROR: -n option requested 128 hosts, only 64 are available!
+ERROR: Number of hosts (requested through -n) plus offset (via -o) exceeds the total number of slots available.
+TACC: MPI job exited with code: 1
+ibrun -o 0 -n 256 ssort/ssort 2560000000 ssort/
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+ERROR: -n option requested 256 hosts, only 64 are available!
+ERROR: Number of hosts (requested through -n) plus offset (via -o) exceeds the total number of slots available.
+TACC: MPI job exited with code: 1
+DEBUG: jacobi-2D
+ibrun -o 0 -n 4 jacobi-2D/jacobi-mpi2D-nonBlocking 2000 100
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+TACC: MPI job exited with code: 1
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 16 jacobi-2D/jacobi-mpi2D-nonBlocking 4000 100
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+TACC: MPI job exited with code: 1
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 64 jacobi-2D/jacobi-mpi2D-nonBlocking 8000 100
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+TACC: Starting parallel tasks...
+TACC: MPI job exited with code: 1
+ 
+TACC: Shutdown complete. Exiting.
+ibrun -o 0 -n 256 jacobi-2D/jacobi-mpi2D-nonBlocking 16000 100
+TACC: Starting up job 8483938
+TACC: Setting up parallel environment for MVAPICH2+mpispawn.
+ERROR: -n option requested 256 hosts, only 64 are available!
+ERROR: Number of hosts (requested through -n) plus offset (via -o) exceeds the total number of slots available.
+TACC: MPI job exited with code: 1
+DEBUG: k-means 1m
+ibrun -o 0 -n 4 k-means/k_means 3 4000000 9 k-means/4m.data 10
+ibrun -o 0 -n 8 k-means/k_means 3 8000000 9 k-means/8m.data 10
+ibrun -o 0 -n 16 k-means/k_means 3 16000000 9 k-means/16m.data 10
+ibrun -o 0 -n 32 k-means/k_means 3 32000000 9 k-means/32m.data 10
+ibrun -o 0 -n 64 k-means/k_means 3 64000000 9 k-means/64m.data 10
+ibrun -o 0 -n 128 k-means/k_means 3 128000000 9 k-means/128m.data 10
+ibrun -o 0 -n 256 k-means/k_means 3 256000000 9 k-means/256m.data 10
+DEBUG: k-means 1e5
+ibrun -o 0 -n 4 k-means/k_means 3 400000 9 k-means/4m.data 100
+ibrun -o 0 -n 8 k-means/k_means 3 800000 9 k-means/8m.data 100
+ibrun -o 0 -n 16 k-means/k_means 3 1600000 9 k-means/16m.data 100
+ibrun -o 0 -n 32 k-means/k_means 3 3200000 9 k-means/32m.data 100
+ibrun -o 0 -n 64 k-means/k_means 3 6400000 9 k-means/64m.data 100
+ibrun -o 0 -n 128 k-means/k_means 3 12800000 9 k-means/128m.data 100
+ibrun -o 0 -n 256 k-means/k_means 3 25600000 9 k-means/256m.data 100
