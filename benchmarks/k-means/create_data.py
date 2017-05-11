@@ -1,11 +1,22 @@
 #!/usr/bin/python
 
 import numpy as np
-
-from sklearn.cluster import MiniBatchKMeans, KMeans
-from sklearn.metrics.pairwise import pairwise_distances_argmin
-from sklearn.datasets.samples_generator import make_blobs
-
+def npBlobs(n_samples=5, centers=[[1,1]], cluster_std=0.5):
+    if len(centers)<1:
+        print('provide center')
+        return None
+    d = len(centers[0])
+    cn = len(centers)
+    cov = np.identity(d)*cluster_std
+    pn = int(np.ceil(n_samples/float(cn)))
+    res = np.zeros((pn*cn,d))
+    labels = np.zeros(pn*cn)
+    for i in xrange(cn):
+        c = centers[i]
+        res[(i*pn):((i+1)*pn),:] = np.random.multivariate_normal(c, cov, (pn, ))
+        labels[(i*pn):((i+1)*pn)] = i
+    s=np.arange(n_samples)
+    return res[s],labels[s]
 
 def main():
     import sys
@@ -29,7 +40,7 @@ def main():
               [1,1,6],
               [1,-1,6]]
     print('Centers: ',centers)
-    X, labels_true = make_blobs(n_samples=N, centers=centers, cluster_std=std)
+    X, _ = npBlobs(n_samples=N, centers=centers, cluster_std=std)
 
     with open(f_name,'wb') as f:
         for i in range(N):
