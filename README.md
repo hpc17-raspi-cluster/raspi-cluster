@@ -10,8 +10,10 @@ There are also some benchmark scripts available in the benchmarks folder. These 
 
 #### Team
 
-Munir Contractor  
-Utku Evci
+[Munir Contractor](https://github.com/munircontractor/)  
+[Utku Evci](https://github.com/evcu)
+
+#### Almost final photo
 
 <img src="photo.png" height="480" width="640"></img>
 
