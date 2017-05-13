@@ -12,3 +12,7 @@ There are also some benchmark scripts available in the benchmarks folder. These 
 
 Munir Contractor  
 Utku Evci
+
+<img src="photo.png" height="480" width="640"></img>
+
+Sorry for lack of better photo :(
