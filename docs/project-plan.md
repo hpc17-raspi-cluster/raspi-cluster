@@ -5,9 +5,6 @@
 * Create a cluster of 4 Raspberry Pi motherboards that can run OpenMPI
 * Document the process such that it can be recreated easily by others
 * Benchmark performance of OpenMPI on the cluster
-
-##### Nice-to-have
-
 * Make cluster relocatable and dynamic
 
 ### System requirements and costs
@@ -25,32 +22,15 @@ Total: $256.28 + taxes
 #### Software
 
 * OS: Raspbian
-* OpenMPI: Compile from source.
-* Benchmarks:
-    - [OSU MPI Benchmarks](http://mvapich.cse.ohio-state.edu/benchmarks/) for micro-benchmarks
-    - Some actual code for macro-benchmarks
-    - Distributed network training with pytorch. (The library is experimental, so I may need to contribute to it, or write it from stratch.)
-    - Parallel/Distributed K-means. http://www.ece.northwestern.edu/~wkliao/Kmeans/index.html
-
-### Process
-
-1. Setup one Raspberry Pi with OS
-2. Install OpenMPI
-3. Clone the disk into the other Pis
-4. Create the cluster
-5. Test and run benchmarks.
-6. Compare the scaling with HPC and/or CIMS machines.
-7. Investigate on making the cluster relocatable and easily expandable
+* OpenMPI: Compile from source or install from repository
+* dnsmasq
+* iptables
+* NFS client and server
 
 ### Benchmarks
 We decided to run the some of the homework-code we've written and an OpenMPI implementation of distributed k-means algorithm. The benchmarks are following:
-- __Parallel Sample Sort__
-    + Ready.
-- __2D Jacobi Smoother__
-    + Ready.
-- __1D MultiGrid Jacobi Smoother__
-    + Needs to be adapted.
-- __K-Means__
-    I am halfway finishing. I will be generating data with a python script and reading the file within the C implementation. 
 
-We will be finishing the benchmarks and running them in the next week in Stampede/hpc/raspi
+* Parallel Sample Sort
+* 2D Jacobi Smoother
+* 1D MultiGrid Jacobi Smoother
+* K-Means
